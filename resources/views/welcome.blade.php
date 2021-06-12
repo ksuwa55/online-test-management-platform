@@ -42,6 +42,10 @@
                 z-index: 999;
             }
             }
+
+            .logout{
+                margin-left: 17px
+            }
             
            /** .sidebar .nav-link {
             color: #333;
@@ -100,10 +104,15 @@
                         </li>
                     </ul>
                 </div>
+                <br>
+                <br>
+                <button type="submit" class="btn btn-primary btn-sm logout">Log out</button>
+
             </nav>
             <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
                 <h1 class="h2">Dashboard</h1>
             </main>
+
         </div>
         </div>
 
