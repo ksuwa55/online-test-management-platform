@@ -2,6 +2,44 @@
 
 @section('main-content')
 
-<h1>This is the dashboard</h1>
+<div class="container mt-4">
+    <div class="row">
+        <div class="card text-white bg-primary mb-3 col-5" style="max-width: 20rem; height: 13rem;">
+            <div class="card-body">
+                <br>
+                <h4 class="card-title">50%</h4>
+                <p class="card-text">Achievement rates</p>
+            </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="card text-white bg-warning mb-3 col-5" style="max-width: 20rem; height: 13rem;">
+            <div class="card-body">
+                <br>
+                <h4 class="card-title">15</h4>
+                <p class="card-text">Remaining Date</p>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="row">
+        <div class="card text-white bg-success mb-3 col-5" style="max-width: 20rem; height: 13rem;">
+            <div class="card-body">
+                <br>
+                <h4 class="card-title">100</h4>
+                <p class="card-text">Requirements</p>
+            </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="card text-white bg-secondary mb-3 col-5" style="max-width: 20rem; height: 13rem;">
+            <div class="card-body">
+                <br>
+                <h4 class="card-title">100</h4>
+                <p class="card-text">Test Cases</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 @endsection

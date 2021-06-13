@@ -33,14 +33,7 @@
             .logout{
                 margin-left: 17px
             }
-            
-           /** .sidebar .nav-link {
-            color: #333;
-            }
-            
-            .sidebar .nav-link.active {
-            color: #0d6efd;
-            } */
+  
             </style>
 
 
@@ -96,17 +89,15 @@
                     <br>
                     <button type="submit" class="btn btn-primary btn-sm logout">Log out</button>
                 </nav>
+                
                 <!-- Body -->
                 <div class="col">
                     @yield('main-content')
                 </div>
             </div>
-
-    
         </div>
 
-
                 <!-- Bootstrap JS -->
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     </body>
 </html>
