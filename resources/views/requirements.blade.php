@@ -11,7 +11,7 @@
     <br>
     <div class="row" style="min-height: 85vh">
         <!-- Requirements List -->
-        <div class="col-2 border border-dark" >
+        <div class="col-2 border border-dark" style="overflow-y: auto; max-height: 85vh;" >
             <div class="card" style="margin: 7px 0;">
                 <div class="card-header">
                     REQ-01                
@@ -28,14 +28,11 @@
                     <p class="card-text" >Title</p>
                 </div>
             </div>
-
-
-
         </div>
         <div class="col-1"></div>
 
         <!-- Test Case List -->
-        <div class="col-9 border border-dark">
+        <div class="col-9 border border-dark" style="overflow-y: auto; max-height: 85vh;">
             <div class="float-start mt-3">
                 <h4 class="pb-3">REQ-01</h4>
             </div>
