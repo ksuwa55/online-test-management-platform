@@ -18,7 +18,8 @@
     <main class="signup-form" style="margin-top:1.5rem;">
         <div class="cotainer">
             <div class="row justify-content-center">
-                <div class="col-md-6">        
+                <div class="col-md-6">  
+                    <h3>Project Name</h3>
                     <div class="card">
                         <form action="" method="POST">
                                 @csrf    
