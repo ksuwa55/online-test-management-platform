@@ -4,7 +4,9 @@
 
 <div class="container mt-3">
     <div class="row">
-        <button type="button" class="btn btn-primary" style="max-width: 10rem;">Generate Report</button>
+        <a href="#" class="btn btn-info" style="max-width: 12rem;">
+             <i class="fa fa-plus-circle"></i> Generate Report
+        </a>       
     </div>
     <br>
 
@@ -35,7 +37,7 @@
             </div>
         </div>
         <div class="col-2"></div>
-        <div class="card text-white bg-info mb-3 col-5" style="max-width: 20rem; height: 13rem;">
+        <div class="card text-white bg-primary mb-3 col-5" style="max-width: 20rem; height: 13rem;">
             <div class="card-body">
                 <br>
                 <h4 class="card-title">100</h4>

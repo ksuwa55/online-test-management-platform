@@ -24,3 +24,15 @@ Route::get('/requirements', function(){
 Route::get('/testcase', function(){
     return view('testcase');
 });
+
+Route::get('/register_user', function(){
+    return view('register_user');
+});
+
+Route::get('/register_project', function(){
+    return view('register_project');
+});
+
+Route::get('/login', function(){
+    return view('login');
+});
