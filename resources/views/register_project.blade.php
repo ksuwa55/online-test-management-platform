@@ -23,7 +23,7 @@
                     <div class="card">
                         <h4 class="card-header text-center">Project</h3>
                         <div class="card-body">
-                        <form action="" method="POST">
+                        <form action="{{ route('project.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <input type="text" placeholder="Project Name" id="project_name" class="form-control" name="project_name"

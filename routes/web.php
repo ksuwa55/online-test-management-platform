@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +28,7 @@ Route::get('/testcase', function(){
 
 Route::get('/register_user', function(){
     return view('register_user');
-});
+})->name('register_user');
 
 Route::get('/register_project', function(){
     return view('register_project');
@@ -36,3 +37,6 @@ Route::get('/register_project', function(){
 Route::get('/login', function(){
     return view('login');
 });
+
+
+Route::resource('project',ProjectController::class);

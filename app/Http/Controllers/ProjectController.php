@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Project;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -15,7 +15,9 @@ class ProjectController extends Controller
     public function index()
     {
         // get all projects
-        $projects = Project::all();
+        //return view('register_project');
+        //return view('register_user');
+
     }
 
     /**
@@ -25,7 +27,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,7 +38,16 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       // $request->validate([
+       //    'project_code' => 'required',
+         //   'project_name' => 'required'
+        //]);
+
+        $project = new Project();
+        $project->project_name = $request->project_name;
+        $project->project_cd = $request->project_cd;
+        $project->save();
+        return redirect()->route('register_user');
     }
 
     /**
