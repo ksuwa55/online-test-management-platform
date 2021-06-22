@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        // get all projects
-        //return view('register_project');
-        //return view('register_user');
-
+        //
     }
 
     /**
@@ -27,7 +24,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -38,16 +35,14 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-       // $request->validate([
-       //    'project_code' => 'required',
-         //   'project_name' => 'required'
-        //]);
-
-        $project = new Project();
-        $project->project_name = $request->project_name;
-        $project->project_cd = $request->project_cd;
-        $project->save();
-        return redirect()->route('succeed_register_project');
+        $user = new User();
+        $user->name = $request->name;
+        $user->project_cd = $request->project_cd;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->role = $request->role;
+        $user->save();
+        return redirect()->route('login');
     }
 
     /**

@@ -21,13 +21,18 @@
                 <div class="col-md-6">  
                     <h3>Project Name</h3>
                     <div class="card">
-                        <form action="" method="POST">
+                        <form action="{{ route('user.store') }}" method="POST">
                                 @csrf    
                             <h4 class="card-header text-center">Member</h3>
                             <div class="card-body">
                                 <div class="form-group mb-3">
                                     <input type="text" placeholder="Name" id="name" class="form-control" name="name"
                                         required autofocus>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <input type="text" placeholder="project_cd" id="project_cd" class="form-control"
+                                        name="project_cd" required autofocus>
                                 </div>
 
                                 <div class="form-group mb-3">
