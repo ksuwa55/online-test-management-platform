@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnsUsersTable extends Migration
+class CreateRequirementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class AddColumnsUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function(Blueprint $table){
+        Schema::create('requirements', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
             $table->string('project_cd');
-            $table->enum('role',['Administrator','Manager','Developer','Tester']);
+            $table->string('descriotion');
+            $table->timestamps();
         });
     }
 
@@ -26,9 +29,6 @@ class AddColumnsUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function($table) {
-            $table->dropColumn('project_cd');
-            $table->dropColumn('role');
-        });
+        Schema::dropIfExists('requirements');
     }
 }
