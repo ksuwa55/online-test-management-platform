@@ -86,7 +86,10 @@
                         </ul>
                     </div>
                     <br><br><br><br><br><br>
-                    <button type="submit" class="btn btn-primary btn-sm logout">Log out</button>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-small btn-primary">Logout</button>
+                    </form>                
                 </nav>
 
                 <!-- Body -->

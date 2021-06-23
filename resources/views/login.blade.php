@@ -19,13 +19,22 @@
                 <div class="row justify-content-center">
                     <div class="col-md-4">
                         <div class="card">
+
                             <h3 class="card-header text-center">Login</h3>
+                            @if(isset(Auth::user()->email, Auth::user()->project_cd))
+                                <script>window.location="/main/successlogin";</script>
+                            @endif
+
+
                             <div class="card-body">
                                 <form method="POST" action="">
-                                    @csrf
+                                {{ csrf_field() }}
                                     <div class="form-group mb-3">
-                                        <input type="text" placeholder="Project Code" id="email" class="form-control" name="project_cd" required
+                                        <input type="text" placeholder="Project Code" id="project_cd" class="form-control" name="project_cd" required
                                             autofocus>
+                                        @if ($errors->has('project_cd'))
+                                            <span class="text-danger">{{ $errors->first('project_cd') }}</span>
+                                        @endif
                                     </div>
 
                                     <div class="form-group mb-3">
@@ -51,7 +60,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="d-grid mx-auto">
+                                    <div class="form-group d-grid mx-auto">
                                         <button type="submit" class="btn btn-dark btn-block">Signin</button>
                                     </div>
                                 </form>

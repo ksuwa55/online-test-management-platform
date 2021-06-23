@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,33 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
+    return view('welcome');
+});
 
-Route::get('/requirements', function(){
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+
+Route::get('/requirements', function () {
     return view('requirements');
 })->name('requirements');
 
-Route::get('/testcase', function(){
+Route::get('/testcase', function () {
     return view('testcase');
 })->name('testcase');
 
-Route::get('/register_user', function(){
-    return view('register_user');
-})->name('register_user');
-
-Route::get('/succeed_register_project', function(){
-    return view('succeed_register_project');
-})->name('succeed_register_project');
-
-Route::get('/register_project', function(){
-    return view('register_project');
-});
-
-Route::get('/login', function(){
-    return view('login');
-})->name('login');
-
-
-Route::resource('project',ProjectController::class);
-Route::resource('user',UserController::class);
+require __DIR__.'/auth.php';
