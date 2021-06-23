@@ -17,7 +17,7 @@ class CreateRequirementsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('project_cd');
-            $table->string('descriotion');
+            $table->string('description');
             $table->timestamps();
         });
     }
