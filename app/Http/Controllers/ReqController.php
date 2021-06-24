@@ -7,7 +7,7 @@ use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Requirement;
 
 class ReqController extends Controller
 {
@@ -42,7 +42,17 @@ class ReqController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = \Auth::user();
+        $user_project_cd = $user->project_cd;
+
+        $requirement = new Requirement();
+        $requirement->requirement_cd = $request->requirement_cd;
+        $requirement->title = $request->title;
+        $requirement->description = $request->description;
+        $requirement->project_cd = $user_project_cd;
+
+        $requirement->save();
+        return redirect('requirements');
     }
 
     /**
