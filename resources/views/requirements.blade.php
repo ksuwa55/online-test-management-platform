@@ -12,22 +12,17 @@
     <div class="row" style="min-height: 85vh">
         <!-- Requirements List -->
         <div class="col-2 border border-dark" style="overflow-y: auto; max-height: 85vh;" >
+           
+            @foreach($requirements as $requirement)
             <div class="card" style="margin: 7px 0;">
                 <div class="card-header">
-                    REQ-01                
+                    {{ $requirement->requirement_cd }}               
                 </div>
                 <div class="card-body">
-                    <p class="card-text" >Title</p>
+                    <p class="card-text" > {{ $requirement->title }} </p>
                 </div>
             </div>
-            <div class="card" style="margin: 7px 0;">
-                <div class="card-header">
-                    REQ-02               
-                </div>
-                <div class="card-body">
-                    <p class="card-text" >Title</p>
-                </div>
-            </div>
+            @endforeach
         </div>
         <div class="col-1"></div>
 

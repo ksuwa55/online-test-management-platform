@@ -14,14 +14,14 @@ class CreateRequirementsTable extends Migration
     public function up()
     {
         Schema::create('requirements', function (Blueprint $table) {
-            $table->id();
             $table->string('title');
             $table->string('project_cd');
+            $table->string('requirement_cd');
             $table->string('description');
+            $table->unique(['project_cd', 'requirement_cd']);
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

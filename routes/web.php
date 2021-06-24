@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReqController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +23,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/requirements', [ReqController::class, 'index'])->name('requirements');
+Route::resource('requirements',ReqController::class);
 
-Route::get('/requirements', function () {
-    return view('requirements');
-})->name('requirements');
+
+//  Route::get('/requirements', function () {
+//     return view('requirements');
+// })->name('requirements');
 
 Route::get('/testcase', function () {
     return view('testcase');
