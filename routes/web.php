@@ -43,3 +43,5 @@ Route::get('/gantt', function () {
 Route::resource('upload',UploadController::class);
 
 require __DIR__.'/auth.php';
+
+

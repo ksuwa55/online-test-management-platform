@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Requirement;
 
-class ReqController extends Controller
+class LinkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +12,8 @@ class ReqController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {  
-        $requirements = Requirement::get();
-        return view('requirements',['requirements'=>$requirements]);
+    {
+        //
     }
 
     /**
@@ -39,17 +34,18 @@ class ReqController extends Controller
      */
     public function store(Request $request)
     {
-        $user = \Auth::user();
-        $user_project_cd = $user->project_cd;
-
-        $requirement = new Requirement();
-        $requirement->requirement_cd = $request->requirement_cd;
-        $requirement->title = $request->title;
-        $requirement->description = $request->description;
-        $requirement->project_cd = $user_project_cd;
-
-        $requirement->save();
-        return redirect('requirements');
+        $link = new Link();
+ 
+        $link->type = $request->type;
+        $link->source = $request->source;
+        $link->target = $request->target;
+ 
+        $link->save();
+ 
+        return response()->json([
+            "action"=> "inserted",
+            "tid" => $link->id
+        ]);
     }
 
     /**
@@ -83,7 +79,17 @@ class ReqController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $link = Link::find($id);
+ 
+        $link->type = $request->type;
+        $link->source = $request->source;
+        $link->target = $request->target;
+ 
+        $link->save();
+ 
+        return response()->json([
+            "action"=> "updated"
+        ]);
     }
 
     /**
@@ -94,6 +100,11 @@ class ReqController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $link = Link::find($id);
+        $link->delete();
+ 
+        return response()->json([
+            "action"=> "deleted"
+        ]);
     }
 }

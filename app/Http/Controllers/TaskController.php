@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Requirement;
 
-class ReqController extends Controller
+
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,8 @@ class ReqController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {  
-        $requirements = Requirement::get();
-        return view('requirements',['requirements'=>$requirements]);
+    {
+        //
     }
 
     /**
@@ -39,17 +39,24 @@ class ReqController extends Controller
      */
     public function store(Request $request)
     {
+
         $user = \Auth::user();
         $user_project_cd = $user->project_cd;
 
-        $requirement = new Requirement();
-        $requirement->requirement_cd = $request->requirement_cd;
-        $requirement->title = $request->title;
-        $requirement->description = $request->description;
-        $requirement->project_cd = $user_project_cd;
+        $task = new Task();
 
-        $requirement->save();
-        return redirect('requirements');
+        $task->text = $request->text;
+        $task->start_date = $request->start_date;
+        $task->duration = $request->duration;
+        $task->progress = $request->has("progress") ? $request->progress : 0;
+        $task->parent = $request->parent;
+        $task->project_cd = $user_project_cd;
+        $task->save();
+ 
+        return response()->json([
+            "action"=> "inserted",
+            "tid" => $task->id
+        ]);
     }
 
     /**
@@ -83,7 +90,20 @@ class ReqController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $task = Task::find($id);
+ 
+        $task->text = $request->text;
+        $task->start_date = $request->start_date;
+        $task->duration = $request->duration;
+        $task->progress = $request->has("progress") ? $request->progress : 0;
+        $task->parent = $request->parent;
+
+        $task->save();
+ 
+        return response()->json([
+            "action"=> "updated"
+        ]);
     }
 
     /**
@@ -94,6 +114,11 @@ class ReqController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::find($id);
+        $task->delete();
+ 
+        return response()->json([
+            "action"=> "deleted"
+        ]);
     }
 }
