@@ -16,30 +16,31 @@
                 <thead>
                     <tr>
                     <th scope="col">Test case</th>
-                    <th scope="col">Test type</th>
                     <th scope="col">Requirements</th>
                     <th scope="col">Start Date</th>
                     <th scope="col">End Date</th>
-                    <th scope="col">Status</th>
                     <th scope="col">Test data</th>
                     <th scope="col">Evidence</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Approval</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                     <td>Case-01</td>
-                    <td>Acceptance</td>
                     <td>REQ-01</td>
                     <td>15 June 2021</td>
                     <td>25 June 2021</td>
+                    <td>data.xlsx</td>
+                    <td>evidence.xlsx</td>
                     <td>
                         <select name="status" id="status" class="form-control" >    
+                            <option>Todo</option>
                             <option>In progress</option>
                             <option>Completed</option>
                         </select>
                     </td>
-                    <td>data.xlsx</td>
-                    <td>evidence.xlsx</td>
+                    <td style="text-align:center;"><input type="checkbox"></td>
                     </tr>
                 </tbody>
             </table>
