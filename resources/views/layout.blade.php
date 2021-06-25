@@ -6,6 +6,11 @@
 
         <title>Laravel</title>
 
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+ 
+        <script src="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.js"></script>
+        <link href="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css" rel="stylesheet">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         
@@ -66,7 +71,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link  text-white"  href="#">
+                                <a class="nav-link  text-white"  href="{{ route('gantt') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                                 <span class="ml-2">Gantt</span>
                                 </a>

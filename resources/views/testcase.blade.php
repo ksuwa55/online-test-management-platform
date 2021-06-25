@@ -22,7 +22,6 @@
                     <th scope="col">Test data</th>
                     <th scope="col">Evidence</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Approval</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,12 +34,12 @@
                     <td>evidence.xlsx</td>
                     <td>
                         <select name="status" id="status" class="form-control" >    
-                            <option>Todo</option>
+                            <option>Not start</option>
                             <option>In progress</option>
+                            <option>Pending</option>
                             <option>Completed</option>
                         </select>
                     </td>
-                    <td style="text-align:center;"><input type="checkbox"></td>
                     </tr>
                 </tbody>
             </table>

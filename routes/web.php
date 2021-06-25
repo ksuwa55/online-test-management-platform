@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReqController;
+use App\Http\Controllers\UploadController;
 
 
 /*
@@ -35,6 +36,10 @@ Route::get('/testcase', function () {
     return view('testcase');
 })->name('testcase');
 
+Route::get('/gantt', function () {
+    return view('gantt');
+})->name('gantt');;
 
+Route::resource('upload',UploadController::class);
 
 require __DIR__.'/auth.php';
