@@ -4,8 +4,7 @@
 
 @section('main-content')
 
-<div class="container mt-3">
-    <h3>Calendar</h3>
+<div class="container mt-3 border border-dark" style="width:950px; padding-top:10px;">
     <div id='calendar'></div>
 </div>
 
@@ -29,5 +28,6 @@
             ]
         })
     });
+
 </script>
 @endsection

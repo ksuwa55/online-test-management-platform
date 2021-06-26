@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use DB;
 
 class TaskController extends Controller
 {
@@ -14,6 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
+        
         $tasks = Task::get();
         return view('tasks',['tasks'=>$tasks]);
     }
