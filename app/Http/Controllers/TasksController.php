@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Models\Task;
-use Illuminate\Support\Facades\Auth;
 
-
-class TaskController extends Controller
+class TasksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +14,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::get();
+        return view('tasks.index', compact('tasks')).view('tasklist',compact('tasks'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +26,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -39,24 +37,18 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-
         $user = \Auth::user();
         $user_project_cd = $user->project_cd;
 
         $task = new Task();
-
-        $task->text = $request->text;
-        $task->start_date = $request->start_date;
-        $task->duration = $request->duration;
-        $task->progress = $request->has("progress") ? $request->progress : 0;
-        $task->parent = $request->parent;
+        $task->title = $request->title;
+        $task->start = $request->start;
+        $task->end = $request->end;
+        $task->person_email = $request->person_email;
         $task->project_cd = $user_project_cd;
+
         $task->save();
- 
-        return response()->json([
-            "action"=> "inserted",
-            "tid" => $task->id
-        ]);
+        return redirect('tasklist');
     }
 
     /**
@@ -90,20 +82,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $task = Task::find($id);
- 
-        $task->text = $request->text;
-        $task->start_date = $request->start_date;
-        $task->duration = $request->duration;
-        $task->progress = $request->has("progress") ? $request->progress : 0;
-        $task->parent = $request->parent;
-
-        $task->save();
- 
-        return response()->json([
-            "action"=> "updated"
-        ]);
+        //
     }
 
     /**
@@ -114,11 +93,6 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        $task = Task::find($id);
-        $task->delete();
- 
-        return response()->json([
-            "action"=> "deleted"
-        ]);
+        //
     }
 }

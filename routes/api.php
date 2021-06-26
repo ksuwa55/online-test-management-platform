@@ -22,9 +22,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/data', [GanttController::class,'get']);
-
-Route::resource('task', TaskController::class);
-Route::resource('link', LinkController::class);
 
 

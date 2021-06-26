@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLinksTable extends Migration
+class CreateTasksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('links', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('type');
-            $table->integer('source');
-            $table->integer('target');
+        Schema::create('tasks', function (Blueprint $table) {
+            $table->increments('id');            
+            $table->string('title');
+            $table->date('start');
+            $table->date('end');
+            $table->string('person_email');
+            $table->string('project_cd');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateLinksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('links');
+        Schema::dropIfExists('tasks');
     }
 }

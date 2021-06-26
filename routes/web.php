@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReqController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\TasksController;
 
 
 /*
@@ -27,18 +29,17 @@ Route::get('/dashboard', function () {
 Route::get('/requirements', [ReqController::class, 'index'])->name('requirements');
 Route::resource('requirements',ReqController::class);
 
+Route::resource('tasks',TasksController::class);
 
-//  Route::get('/requirements', function () {
-//     return view('requirements');
-// })->name('requirements');
+Route::get('/tasklist', function(){
+    return view('tasks/tasklist');
+})->name('tasklist');
+
 
 Route::get('/testcase', function () {
     return view('testcase');
 })->name('testcase');
 
-Route::get('/gantt', function () {
-    return view('gantt');
-})->name('gantt');;
 
 Route::resource('upload',UploadController::class);
 
