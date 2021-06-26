@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Task;
+use Illuminate\Http\Request;
 
-class TasksController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,8 @@ class TasksController extends Controller
     public function index()
     {
         $tasks = Task::get();
-        return view('tasks.index', compact('tasks')).view('tasklist',compact('tasks'));
+        return view('tasks',['tasks'=>$tasks]);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +25,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -48,16 +47,16 @@ class TasksController extends Controller
         $task->project_cd = $user_project_cd;
 
         $task->save();
-        return redirect('tasklist');
+        return redirect('tasks');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Task $task)
     {
         //
     }
@@ -65,10 +64,10 @@ class TasksController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Task $task)
     {
         //
     }
@@ -77,10 +76,10 @@ class TasksController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Task $task)
     {
         //
     }
@@ -88,10 +87,10 @@ class TasksController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Task $task)
     {
         //
     }

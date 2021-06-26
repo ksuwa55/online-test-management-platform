@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReqController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\FullCalendarController;
-use App\Http\Controllers\TasksController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\TaskController;
 
 
 /*
@@ -18,29 +19,33 @@ use App\Http\Controllers\TasksController;
 |
 */
 
+//Welcome page
 Route::get('/', function () {
     return view('welcome');
 });
 
+//Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+//Requirements
 Route::get('/requirements', [ReqController::class, 'index'])->name('requirements');
 Route::resource('requirements',ReqController::class);
 
-Route::resource('tasks',TasksController::class);
+//Calendar
+Route::resource('calendar',CalendarController::class);
 
-Route::get('/tasklist', function(){
-    return view('tasks/tasklist');
-})->name('tasklist');
+//Tasklist
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
+Route::resource('tasks',TaskController::class);
 
-
+//Test case
 Route::get('/testcase', function () {
     return view('testcase');
 })->name('testcase');
 
-
+//File upload
 Route::resource('upload',UploadController::class);
 
 require __DIR__.'/auth.php';

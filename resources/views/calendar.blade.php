@@ -23,7 +23,7 @@
                     title : '{{ $task->title }}',
                     start : '{{ $task->start }}',
                     end : '{{ $task->end }}',
-                    url : '{{ route('tasks.edit', $task->id) }}'
+                    url : '{{ route('calendar.edit', $task->id) }}'
                 },
                 @endforeach
             ]
