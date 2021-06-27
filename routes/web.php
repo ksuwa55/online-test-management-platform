@@ -7,6 +7,7 @@ use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TestcaseController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,12 @@ Route::get('/', function () {
 });
 
 //Dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+
 
 //Requirements
 Route::get('/requirements', [ReqController::class, 'index'])->name('requirements');

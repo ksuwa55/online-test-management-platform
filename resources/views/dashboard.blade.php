@@ -32,7 +32,7 @@
         <div class="card text-white bg-success mb-3 col-5" style="max-width: 20rem; height: 13rem;">
             <div class="card-body">
                 <br>
-                <h4 class="card-title">100</h4>
+                <h4 class="card-title">{{ $count_req }}</h4>
                 <p class="card-text">Requirements</p>
             </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="card text-white bg-primary mb-3 col-5" style="max-width: 20rem; height: 13rem;">
             <div class="card-body">
                 <br>
-                <h4 class="card-title">100</h4>
+                <h4 class="card-title">{{ $count_testcase }}</h4>
                 <p class="card-text">Test Cases</p>
             </div>
         </div>
