@@ -12,10 +12,21 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 <body>
-    <div>this is welcome page</div>
-    <a href="{{ route('register') }}" class="btn btn-xs btn-info pull-right">Register</a>
-    <a href="{{ route('login') }}" class="btn btn-xs btn-info pull-right">Login</a>
+  <div style="  text-align: center;   padding-top:8em; ">
+    <H2>Register or Login?</H2>    
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-4"></div>
+        <a href="{{ route('register') }}" class="btn btn-xs btn-info pull-right col">Register</a>
+        <div class="col"></div>
+        <a href="{{ route('login') }}" class="btn btn-xs btn-info pull-right col">Login</a>
+        <div class="col-4"></div>
 
+      </div>
+    </div>
+
+  </div>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
