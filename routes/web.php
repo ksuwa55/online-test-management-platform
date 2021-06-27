@@ -6,7 +6,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\TaskController;
-
+use App\Http\Controllers\TestcaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,9 +41,8 @@ Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
 Route::resource('tasks',TaskController::class);
 
 //Test case
-Route::get('/testcase', function () {
-    return view('testcase');
-})->name('testcase');
+Route::get('/testcases', [TestcaseController::class, 'index'])->name('testcases');
+Route::resource('testcases',TestcaseController::class);
 
 //File upload
 Route::resource('upload',UploadController::class);

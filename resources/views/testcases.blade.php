@@ -15,32 +15,25 @@
             <table class="table table-striped" style="margin-top:7px;">
                 <thead>
                     <tr>
-                    <th scope="col">Test case</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Title</th>
                     <th scope="col">Requirements</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">End Date</th>
                     <th scope="col">Test data</th>
                     <th scope="col">Evidence</th>
                     <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($testcases as $testcase)                        
                     <tr>
-                    <td>Case-01</td>
-                    <td>REQ-01</td>
-                    <td>15 June 2021</td>
-                    <td>25 June 2021</td>
-                    <td>data.xlsx</td>
-                    <td>evidence.xlsx</td>
-                    <td>
-                        <select name="status" id="status" class="form-control" >    
-                            <option>Not start</option>
-                            <option>In progress</option>
-                            <option>Pending</option>
-                            <option>Completed</option>
-                        </select>
-                    </td>
+                    <td>{{ $testcase->testcase_cd }}</td>
+                    <td>{{ $testcase->title }}</td>
+                    <td>{{ $testcase->requirement_cd }}</td>
+                    <td>{{ $testcase->testdata }}</td>
+                    <td>{{ $testcase->evidence }}</td>
+                    <td>{{ $testcase->status }}</td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -4,7 +4,7 @@
 
 @section('main-content')
 
-<div class="container mt-3 border border-dark" style="width:950px; padding-top:10px;">
+<div class="container mt-3 border border-dark" style="width:700px; overflow-y: auto;  max-height: 97vh; padding-top:5px;">
     <div id='calendar'></div>
 </div>
 
