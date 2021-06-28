@@ -67,7 +67,7 @@
                         <td>{{ $task->end }}</td>
                         <td>{{ $task->person_email }}</td>
                         <td>                   
-                            <div class="float-end">
+                            <div class="float-middle">
                                 <a href="{{ route('tasks.edit', $task->id)}}" class="btn btn-success"  >
                                     <i class="fa fa-edit"></i> 
                                 </a>  

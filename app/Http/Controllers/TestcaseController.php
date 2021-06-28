@@ -18,7 +18,26 @@ class TestcaseController extends Controller
     public function index()
     {
         $testcases = Testcase::get();
-        return view('testcases',['testcases'=>$testcases]);
+        $statuses = [
+            [
+                'label' => 'Not start',
+                'value' => 'Not start',
+            ],
+            [
+                'label' => 'In progress',
+                'value' => 'In progress',
+            ],
+            [
+                'label' => 'Pending',
+                'value' => 'Pending',
+            ],
+            [
+                'label' => 'Completed',
+                'value' => 'Completed',
+            ],
+        ];
+        return view('testcases')->with('testcases',$testcases)
+                                ->with('statuses',$statuses);
     }
 
     /**
@@ -59,9 +78,28 @@ class TestcaseController extends Controller
      * @param  \App\Models\Testcase  $testcase
      * @return \Illuminate\Http\Response
      */
-    public function edit(Testcase $testcase)
+    public function edit(Testcase $id)
     {
-        //
+        $testcase = Testcase::findOrFail($id);
+        $statuses = [
+            [
+                'label' => 'Not start',
+                'value' => 'Not start',
+            ],
+            [
+                'label' => 'In progress',
+                'value' => 'In progress',
+            ],
+            [
+                'label' => 'Pending',
+                'value' => 'Pending',
+            ],
+            [
+                'label' => 'Completed',
+                'value' => 'Completed',
+            ],
+        ];
+        return view('testcases', compact('statuses', 'testcases'));
     }
 
     /**

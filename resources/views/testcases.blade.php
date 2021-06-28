@@ -54,23 +54,47 @@
             <table class="table table-striped" style="margin-top:7px;">
                 <thead>
                     <tr>
-                    <th scope="col">Code</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Requirements</th>
-                    <th scope="col">Test data</th>
-                    <th scope="col">Evidence</th>
-                    <th scope="col">Status</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Requirements</th>
+                        <th scope="col">Test data</th>
+                        <th scope="col">Evidence</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($testcases as $testcase)                        
                     <tr>
-                    <td>{{ $testcase->testcase_cd }}</td>
-                    <td>{{ $testcase->title }}</td>
-                    <td>{{ $testcase->requirement_cd }}</td>
-                    <td>{{ $testcase->testdata }}</td>
-                    <td>{{ $testcase->evidence }}</td>
-                    <td>{{ $testcase->status }}</td>
+                        <td>{{ $testcase->testcase_cd }}</td>
+                        <td>{{ $testcase->title }}</td>
+                        <td>{{ $testcase->requirement_cd }}</td>
+                        <td>{{ $testcase->testdata }}</td>
+                        <td>{{ $testcase->evidence }}</td>
+                        <td>
+                            <select name="statuses" id="status" >
+                                @foreach ($statuses as $status)
+                                    <option value="{{ $status['value'] }}"  {{ $testcase->status === $status['value'] ? 'selected' : '' }} >{{ $status['label'] }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <div class="float-midle">
+                                <a href="#" class="btn btn-success"  >
+                                    <i class="fa fa-edit"></i> 
+                                </a>  
+
+
+                                <form action="#" style="display: inline" method='POST'>
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fa fa-trash"></i> 
+                                    </button>  
+                                </form>
+                            </div>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
