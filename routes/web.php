@@ -41,7 +41,6 @@ Route::resource('requirements',ReqController::class);
 Route::resource('calendar',CalendarController::class);
 
 //Tasklist
-Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
 Route::resource('tasks',TaskController::class);
 
 //Test case

@@ -17,7 +17,7 @@ class TaskController extends Controller
     {
         
         $tasks = Task::get();
-        return view('tasks',['tasks'=>$tasks]);
+        return view('tasks', compact('tasks'));
     }
 
     /**
@@ -69,9 +69,11 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        
+        return view('tasksedit', compact('task'));
     }
 
     /**
@@ -94,7 +96,7 @@ class TaskController extends Controller
         $task->person_email = $request->person_email;
 
         $task->save();
-        return redirect()->route('index');
+        return redirect('tasks');
     }
 
     /**
@@ -103,8 +105,10 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return redirect('tasks');
     }
 }

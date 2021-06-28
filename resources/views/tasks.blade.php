@@ -15,7 +15,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="card">
-                    <form action="{{ route('tasks.store') }}" method="POST">
+                    <form action="{{ route('tasks.store') }}" method="POST" autocomplete="off">
                         @csrf
                         <h4 class="card-header text-center">Add Task</h3>
                         <div class="card-body">
@@ -68,11 +68,12 @@
                         <td>{{ $task->person_email }}</td>
                         <td>                   
                             <div class="float-end">
-                                <a href="#" class="btn btn-success" >
+                                <a href="{{ route('tasks.edit', $task->id)}}" class="btn btn-success"  >
                                     <i class="fa fa-edit"></i> 
                                 </a>  
 
-                                <form action="#" style="display: inline" method='POST'>
+
+                                <form action="{{ route('tasks.destroy', $task->id) }}" style="display: inline" method='POST'>
                                     @csrf
                                     @method('DELETE')
 
@@ -82,17 +83,12 @@
                                 </form>
                             </div>
                         </td>
-                    </tr>
+                    </tr>              
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
-
-   
-
-
 </div>
 
 
@@ -106,5 +102,4 @@
         dateFormat: 'yy-mm-dd'
     });
 </script>
-
 @endsection
