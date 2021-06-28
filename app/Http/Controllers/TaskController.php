@@ -81,9 +81,20 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $request->validate([
+            'title' => 'required'
+        ]);
+
+        $task->title = $request->title;
+        $task->start = $request->start;
+        $task->end = $request->end;
+        $task->person_email = $request->person_email;
+
+        $task->save();
+        return redirect()->route('index');
     }
 
     /**

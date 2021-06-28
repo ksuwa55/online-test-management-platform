@@ -3,15 +3,15 @@
 @section('main-content')
 <div class="container mt-3">
 
-    <!-- Modal -->
+    <!-- Modal - create -->
     <div class="row">
-        <a href="#" class="btn btn-info" style="max-width: 12rem;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <a href="#" class="btn btn-info" style="max-width: 12rem;" data-bs-toggle="modal" data-bs-target="#createModal">
                 <i class="fa fa-plus-circle"></i> Add Task
         </a>   
     </div>
     <br>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="card">
@@ -46,31 +46,56 @@
         </div>
     </div>
 
+    <!-- Task table -->
     <div class="row" style="min-height: 85vh">
         <div class="col border border-dark" style="overflow-y: auto; max-height: 100vh;">
             <table class="table table-striped" style="margin-top:7px;">
                 <thead>
                     <tr>
-                    <th scope="col">Task</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">End Date</th>
-                    <th scope="col">Person</th>
+                        <th scope="col">Task</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Person</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($tasks as $task)
                     <tr>
-                    <td>{{ $task->title }}</td>
-                    <td>{{ $task->start }}</td>
-                    <td>{{ $task->end }}</td>
-                    <td>{{ $task->person_email }}</td>
+                        <td>{{ $task->title }}</td>
+                        <td>{{ $task->start }}</td>
+                        <td>{{ $task->end }}</td>
+                        <td>{{ $task->person_email }}</td>
+                        <td>                   
+                            <div class="float-end">
+                                <a href="#" class="btn btn-success" >
+                                    <i class="fa fa-edit"></i> 
+                                </a>  
+
+                                <form action="#" style="display: inline" method='POST'>
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fa fa-trash"></i> 
+                                    </button>  
+                                </form>
+                            </div>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+
+
+   
+
+
 </div>
+
+
 
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
