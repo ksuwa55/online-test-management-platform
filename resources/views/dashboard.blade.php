@@ -14,7 +14,7 @@
         <div class="card text-white bg-warning mb-3 col-5" style="max-width: 20rem; height: 13rem;">
             <div class="card-body">
                 <br>
-                <h4 class="card-title">{{ $achieving_rate }}</h4>
+                <h4 class="card-title">Acievement rate</h4>
                 <p class="card-text">Achievement rates</p>
             </div>
         </div>
@@ -22,7 +22,7 @@
         <div class="card text-white bg-danger mb-3 col-5" style="max-width: 20rem; height: 13rem;">
             <div class="card-body">
                 <br>
-                <h4 class="card-title">{{ $final_date }}</h4>
+                <h4 class="card-title">Finish Date</h4>
                 <p class="card-text">Finish Date</p>
             </div>
         </div>

@@ -15,7 +15,7 @@ class ProjectController extends Controller
     public function index()
     {
         // get all projects
-        //return view('register_project');
+        return view('register_project');
         //return view('register_user');
 
     }
@@ -38,16 +38,16 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-       // $request->validate([
-       //    'project_code' => 'required',
-         //   'project_name' => 'required'
-        //]);
+       $request->validate([
+          'project_cd' => 'required|unique:projects|string|min:10|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
+           'project_name' => 'required'
+        ]);
 
         $project = new Project();
         $project->project_name = $request->project_name;
         $project->project_cd = $request->project_cd;
         $project->save();
-        return redirect()->route('succeed_register_project');
+        return view('succeed_register_project');
     }
 
     /**

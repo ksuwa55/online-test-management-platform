@@ -4,7 +4,7 @@
 
 <div class="container mt-3">
 
-    <!-- Modal (Pop up of requirements) -->
+    <!-- Modal (Pop up of testcase) -->
     <div class="row">
         <a href="#" class="btn btn-info" style="max-width: 12rem;" data-bs-toggle="modal" data-bs-target="#exampleModal">
              <i class="fa fa-plus-circle"></i> Add Test Case
@@ -16,7 +16,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="card">
-                    <form action="{{ route('requirements.store') }}" method="POST">
+                    <form action="#" method="POST">
                         @csrf
                         <h4 class="card-header text-center">Add Test Case</h3>
                         <div class="card-body">
@@ -85,7 +85,7 @@
                                 </a>  
 
 
-                                <form action="#" style="display: inline" method='POST'>
+                                <form action="{{ route('testcases.destroy', $testcase->id) }}" style="display: inline" method='POST'>
                                     @csrf
                                     @method('DELETE')
 

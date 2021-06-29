@@ -22,24 +22,29 @@
                 <div class="col-md-6">                
                     <div class="card">
                         <h4 class="card-header text-center">Project</h3>
+
                         <div class="card-body">
-                        <form action="{{ route('project.store') }}" method="POST">
-                                @csrf
-                                <div class="form-group mb-3">
-                                    <input type="text" placeholder="Project Name" id="project_name" class="form-control" name="project_name"
-                                        required autofocus>
-                                </div>
+                            <form action="{{ route('register_project.store') }}" method="POST">
+                                    @csrf
+                                    <div class="form-group mb-3">
+                                        <input type="text" placeholder="Project Name" id="project_name" class="form-control" name="project_name"
+                                            required autofocus>
+                                    </div>
 
-                                <div class="form-group mb-3">
-                                    <input type="text" placeholder="Project Code" id="project_cd" class="form-control"
-                                        name="project_cd" required autofocus>
-                                </div>
+                                    <div class="form-group mb-3">
+                                        <input type="text" placeholder="Project Code" id="project_cd" class="form-control"
+                                            name="project_cd" required autofocus>
+                                    </div>
 
-                                <div class="d-grid mx-auto">
-                                    <button type="submit" class="btn btn-dark btn-block">Register</button>
+                                    <div class="d-grid mx-auto">
+                                        <button type="submit" class="btn btn-dark btn-block">Register</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                            @foreach ($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>

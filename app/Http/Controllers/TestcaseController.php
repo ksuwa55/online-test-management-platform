@@ -120,8 +120,10 @@ class TestcaseController extends Controller
      * @param  \App\Models\Testcase  $testcase
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Testcase $testcase)
+    public function destroy($id)
     {
-        //
+        $testcase = Testcase::findOrFail($id);
+        $testcase->delete();
+        return redirect('testcases');
     }
 }

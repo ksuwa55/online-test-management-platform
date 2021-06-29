@@ -8,6 +8,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TestcaseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,9 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('register_project',ProjectController::class);
+
 
 //Dashboard
 // Route::get('/dashboard', function () {

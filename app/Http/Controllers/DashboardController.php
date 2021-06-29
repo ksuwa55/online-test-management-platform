@@ -20,14 +20,14 @@ class DashboardController extends Controller
 
         // acvieving rate
         $completed_testcase = Testcase::where('status', 'completed')->count();
-        $achieving_rate = $completed_testcase / $count_testcase * 100 . '%';
+        // $achieving_rate = $completed_testcase / $count_testcase * 100 . '%';
 
         // remaining date
         // $final_date = Task::get()
         // remaining date = final date - today 
         // $today = date("Y-m-d");
         $final_date_record = Task::orderBy('end', 'DESC')->first();
-        $final_date = $final_date_record->end;
+        // $final_date = $final_date_record->end;
 
         // $today = strtotime($today);
         // $final_date = strtotime($final_date);
@@ -38,8 +38,8 @@ class DashboardController extends Controller
 
         return view('dashboard')->with('count_req', $count_req)
                                 ->with('count_testcase', $count_testcase)
-                                ->with('achieving_rate', $achieving_rate)
-                                ->with('final_date', $final_date)
+                                //->with('achieving_rate', $achieving_rate)
+                                //->with('final_date', $final_date)
                                 ;
     }
     // public function time_diff($time_from, $time_to) 
