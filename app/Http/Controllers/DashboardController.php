@@ -20,26 +20,32 @@ class DashboardController extends Controller
 
         // acvieving rate
         $completed_testcase = Testcase::where('status', 'completed')->count();
-        // $achieving_rate = $completed_testcase / $count_testcase * 100 . '%';
+        
+        if($count_testcase == 0){
+            $achieving_rate = 0;
+        }else{
+            $achieving_rate = $completed_testcase / $count_testcase * 100 . '%';
+        }
 
         // remaining date
-        // $final_date = Task::get()
-        // remaining date = final date - today 
-        // $today = date("Y-m-d");
-        $final_date_record = Task::orderBy('end', 'DESC')->first();
-        // $final_date = $final_date_record->end;
+        $today = date("Y-m-d");
+        $count_task = Task::count();
 
-        // $today = strtotime($today);
-        // $final_date = strtotime($final_date);
-
-        // $remaining_date = time_diff($today,$final_date);
-
-
+        if($count_task == 0){
+            $remaining_date = '-';
+        }else{
+            $final_date_record = Task::orderBy('end', 'DESC')->first();
+            $final_date = $final_date_record->end;
+            // $today = strtotime($today);
+            // $final_date = strtotime($final_date);
+    
+            // $remaining_date = time_diff($today,$final_date);
+        }
 
         return view('dashboard')->with('count_req', $count_req)
                                 ->with('count_testcase', $count_testcase)
-                                //->with('achieving_rate', $achieving_rate)
-                                //->with('final_date', $final_date)
+                                ->with('achieving_rate', $achieving_rate)
+                                ->with('final_date', $final_date)
                                 ;
     }
     // public function time_diff($time_from, $time_to) 

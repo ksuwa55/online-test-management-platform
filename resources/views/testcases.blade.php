@@ -16,12 +16,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="card">
-                    <form action="#" method="POST">
+                    <form action="{{ route('testcases.store') }}" method="POST">
                         @csrf
                         <h4 class="card-header text-center">Add Test Case</h3>
                         <div class="card-body">
                             <div class="form-group mb-3">
-                                <input type="text" placeholder="Test Case Code" id="requirement_cd" class="form-control" name="requirement_cd"
+                                <input type="text" placeholder="Test Case Code" id="testcase_cd" class="form-control" name="testcase_cd"
                                     required autofocus>
                             </div>
                             <div class="form-group mb-3">
@@ -29,7 +29,7 @@
                                     required autofocus>
                             </div>
                             <div class="form-group mb-3">
-                                <input type="text" placeholder="Requirements" id="requirements" class="form-control" name="requirements"
+                                <input type="text" placeholder="Requirements" id="requirement_cd" class="form-control" name="requirement_cd"
                                     required autofocus>
                             </div>
                             <div class="form-group mb-3">

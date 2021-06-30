@@ -58,7 +58,20 @@ class TestcaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = \Auth::user();
+        $user_project_cd = $user->project_cd;
+
+        $testcase = new Testcase();
+        $testcase->testcase_cd = $request->testcase_cd;
+        $testcase->title = $request->title;
+        $testcase->requirement_cd = $request->requirement_cd;
+        $testcase->project_cd = $user_project_cd;
+        $testcase->testdata = $request->testdata;
+        $testcase->evidence = $request->testcase_cd.'_evidence';
+        $testcase->status = 'Not start';
+
+        $testcase->save();
+        return redirect('testcases');
     }
 
     /**
