@@ -91,28 +91,29 @@ class TestcaseController extends Controller
      * @param  \App\Models\Testcase  $testcase
      * @return \Illuminate\Http\Response
      */
-    public function edit(Testcase $id)
+    public function edit($id)
     {
-        $testcase = Testcase::findOrFail($id);
-        $statuses = [
-            [
-                'label' => 'Not start',
-                'value' => 'Not start',
-            ],
-            [
-                'label' => 'In progress',
-                'value' => 'In progress',
-            ],
-            [
-                'label' => 'Pending',
-                'value' => 'Pending',
-            ],
-            [
-                'label' => 'Completed',
-                'value' => 'Completed',
-            ],
-        ];
-        return view('testcases', compact('statuses', 'testcases'));
+        $testcase= Testcase::findOrFail($id);
+        // $statuses = [
+        //     [
+        //         'label' => 'Not start',
+        //         'value' => 'Not start',
+        //     ],
+        //     [
+        //         'label' => 'In progress',
+        //         'value' => 'In progress',
+        //     ],
+        //     [
+        //         'label' => 'Pending',
+        //         'value' => 'Pending',
+        //     ],
+        //     [
+        //         'label' => 'Completed',
+        //         'value' => 'Completed',
+        //     ],
+        // ];
+        
+        return view('testcasesedit', compact('testcase'));
     }
 
     /**
@@ -122,10 +123,33 @@ class TestcaseController extends Controller
      * @param  \App\Models\Testcase  $testcase
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Testcase $testcase)
+    public function update(Request $request, $id)
     {
-        //
+        $testcase = Testcase::findOrFail($id);
+        //title
+        if($request->title == null){
+            $testcase->title = $testcase->title;
+        }else{
+            $testcase->title = $request->title;
+        }
+        //requirement_cd
+        if($request->requirement_cd == null){
+            $testcase->requirement_cd = $testcase->requirement_cd;
+        }else{
+            $testcase->requirement_cd  = $request->requirement_cd ;
+        }
+        //status
+        if($request->status == null){
+            $testcase->status = $testcase->status; 
+        }else{
+            $testcase->status  = $request->status ;
+        }
+
+        $testcase->save();
+        return redirect('testcases');
     }
+
+
 
     /**
      * Remove the specified resource from storage.

@@ -48,7 +48,7 @@ Route::resource('calendar',CalendarController::class);
 Route::resource('tasks',TaskController::class);
 
 //Test case
-// Route::get('/testcases', [TestcaseController::class, 'index'])->name('testcases');
+// Route::get('/testcases', [TestcaseController::class, 'update_status'])->name('testcases.update_status');
 Route::resource('testcases',TestcaseController::class);
 
 //File upload

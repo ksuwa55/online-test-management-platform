@@ -72,15 +72,26 @@
                         <td>{{ $testcase->testdata }}</td>
                         <td>{{ $testcase->evidence }}</td>
                         <td>
-                            <select name="statuses" id="status" >
-                                @foreach ($statuses as $status)
-                                    <option value="{{ $status['value'] }}"  {{ $testcase->status === $status['value'] ? 'selected' : '' }} >{{ $status['label'] }}</option>
-                                @endforeach
-                            </select>
+                            <form action="{{ route('testcases.update', $testcase->id) }}"  method='POST'>
+                                @csrf
+                                @method('PUT')
+
+                                <div style="display: flex; flex-direction:column; max-width:7rem;">
+                                    <select name="status" id="status" >
+                                        @foreach ($statuses as $status)
+                                            <option value="{{ $status['value'] }}"  {{ $testcase->status === $status['value'] ? 'selected' : '' }} >{{ $status['label'] }}</option>
+                                        @endforeach
+                                    </select>
+                                    
+                                    <button  onclick="alert('Status has been changed')" type="submit" class="btn btn-info btn-sm" style="max-width: 12rem; margin-top:0.5rem;">
+                                        <i class="fa fa-plus-circle"></i> change
+                                    </button>   
+                                </div>
+                           </form>
                         </td>
                         <td>
                             <div class="float-midle">
-                                <a href="#" class="btn btn-success"  >
+                                <a href="{{ route('testcases.edit', $testcase->id) }}" class="btn btn-success"  >
                                     <i class="fa fa-edit"></i> 
                                 </a>  
 
