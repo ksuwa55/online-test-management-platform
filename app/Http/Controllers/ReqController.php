@@ -103,8 +103,11 @@ class ReqController extends Controller
         $display_requirement = Requirement::findOrFail($id);
         $requirements = Requirement::get();
 
+        $testcases = Testcase::where('requirement_cd', '=' ,$display_requirement->requirement_cd)->get();
+
         return view('requirements')
                ->with('display_requirement',$display_requirement)
-               ->with('requirements',$requirements);
+               ->with('requirements',$requirements)     
+               ->with('testcases',$testcases);
     }
 }
