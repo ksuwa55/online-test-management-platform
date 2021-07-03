@@ -58,6 +58,10 @@ class TestcaseController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'requirement_cd' => 'exists:requirements,requirement_cd|exists:projects,project_cd',
+            ]);
+
         $user = \Auth::user();
         $user_project_cd = $user->project_cd;
 

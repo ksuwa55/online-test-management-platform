@@ -32,7 +32,7 @@ class DashboardController extends Controller
         $count_task = Task::count();
 
         if($count_task == 0){
-            $remaining_date = '-';
+            $final_date = '-';
         }else{
             $final_date_record = Task::orderBy('end', 'DESC')->first();
             $final_date = $final_date_record->end;

@@ -8,7 +8,7 @@ class UploadController extends Controller
 {
     public function index(){
 
-    	return view('upload');
+    	// return view('upload');
     }
 
     public function store(Request $request){

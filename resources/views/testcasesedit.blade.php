@@ -18,6 +18,13 @@
                 value="{{ $testcase->requirement_cd }}"    required autofocus>
             </div>
 
+            <!-- file upload -->
+            <form method="POST" action="/upload" enctype="multipart/form-data">
+                @csrf
+                <input type="file" id="file" name="file" class="form-control">
+                <button type="submit">upload</button>
+            </form>
+
             <a href="{{ route('testcases.index') }}" class="btn btn-secondary mr-2"><i class="fa fa-arrow-left"></i>Back</a>
 
             <button type="submit" class="btn btn-info ">                

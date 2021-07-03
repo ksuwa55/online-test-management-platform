@@ -36,6 +36,13 @@
                                 <input type="text" placeholder="Test Data" id="testdata" class="form-control" name="testdata"
                                     required autofocus>
                             </div>
+                            
+                            <!-- file upload -->
+                            <form method="POST" action="/upload" enctype="multipart/form-data">
+                                @csrf
+                                <input type="file" id="file" name="file" class="form-control">
+                                <button type="submit">upload</button>
+                            </form>
 
                             <div >
                                 <button type="submit" class="btn btn-info btn-sm">Submit</button>
