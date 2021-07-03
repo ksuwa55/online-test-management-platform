@@ -9,6 +9,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TestcaseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TestcaseInReqController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,8 +39,11 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 
 
 //Requirements
-Route::get('/requirements', [ReqController::class, 'index'])->name('requirements');
+Route::get('requirements/{id}', [ReqController::class, 'display'])->name('requirements.display');
+
 Route::resource('requirements',ReqController::class);
+
+
 
 //Calendar
 Route::resource('calendar',CalendarController::class);

@@ -7,6 +7,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Requirement;
+use App\Models\Testcase;
+
 
 class ReqController extends Controller
 {
@@ -60,7 +62,7 @@ class ReqController extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**
@@ -95,5 +97,14 @@ class ReqController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function display($id){
+        $display_requirement = Requirement::findOrFail($id);
+        $requirements = Requirement::get();
+
+        return view('requirements')
+               ->with('display_requirement',$display_requirement)
+               ->with('requirements',$requirements);
     }
 }

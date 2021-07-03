@@ -94,24 +94,6 @@ class TestcaseController extends Controller
     public function edit($id)
     {
         $testcase= Testcase::findOrFail($id);
-        // $statuses = [
-        //     [
-        //         'label' => 'Not start',
-        //         'value' => 'Not start',
-        //     ],
-        //     [
-        //         'label' => 'In progress',
-        //         'value' => 'In progress',
-        //     ],
-        //     [
-        //         'label' => 'Pending',
-        //         'value' => 'Pending',
-        //     ],
-        //     [
-        //         'label' => 'Completed',
-        //         'value' => 'Completed',
-        //     ],
-        // ];
         
         return view('testcasesedit', compact('testcase'));
     }
