@@ -44,6 +44,7 @@ class RegisteredUserController extends Controller
             'project_cd' => $request->project_cd,
             'name' => $request->name,
             'email' => $request->email,
+            'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
 
