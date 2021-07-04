@@ -7,6 +7,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Testcase;
+use App\Models\Requirement;
+
 
 class TestcaseController extends Controller
 {
@@ -58,21 +60,35 @@ class TestcaseController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'requirement_cd' => 'exists:requirements,requirement_cd|exists:projects,project_cd',
-            ]);
-
         $user = \Auth::user();
         $user_project_cd = $user->project_cd;
 
         $testcase = new Testcase();
+
+
+        // validate requirement_cd and project_cd
+        $requirements = Requirement::get(); // this is limited by project_cd... parhaps
+        foreach($requirements as $requirement){
+            $requirement_cds[] = $requirement->requirement_cd; 
+        }
+
+        if(in_array($request->requirement_cd, $requirement_cds)){
+            $testcase->requirement_cd = $request->requirement_cd;
+        }else{
+            return redirect('testcases');
+        }
+
+        // asigne to test case
         $testcase->testcase_cd = $request->testcase_cd;
         $testcase->title = $request->title;
-        $testcase->requirement_cd = $request->requirement_cd;
         $testcase->project_cd = $user_project_cd;
         $testcase->testdata = $request->testdata;
         $testcase->evidence = $request->testcase_cd.'_evidence';
         $testcase->status = 'Not start';
+
+        //file
+        $file_name = $request->file('file')->getClientOriginalName();
+        $request->file('file')->storeAs('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd, $file_name);
 
         $testcase->save();
         return redirect('testcases');
@@ -111,25 +127,30 @@ class TestcaseController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+      
         $testcase = Testcase::findOrFail($id);
+        $user = \Auth::user();
+        $user_project_cd = $user->project_cd;
+
+
         //title
         if($request->title == null){
             $testcase->title = $testcase->title;
         }else{
             $testcase->title = $request->title;
         }
-        //requirement_cd
-        if($request->requirement_cd == null){
-            $testcase->requirement_cd = $testcase->requirement_cd;
-        }else{
-            $testcase->requirement_cd  = $request->requirement_cd ;
-        }
+
         //status
         if($request->status == null){
             $testcase->status = $testcase->status; 
         }else{
             $testcase->status  = $request->status ;
         }
+
+        // //file
+        // $file_name = $request->file('file')->getClientOriginalName();
+        // $request->file('file')->storeAs('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd, $file_name);
 
         $testcase->save();
         return redirect('testcases');

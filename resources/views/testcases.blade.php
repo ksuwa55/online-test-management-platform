@@ -16,7 +16,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="card">
-                    <form action="{{ route('testcases.store') }}" method="POST">
+                    <form action="{{ route('testcases.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <h4 class="card-header text-center">Add Test Case</h3>
                         <div class="card-body">
@@ -37,12 +37,11 @@
                                     required autofocus>
                             </div>
                             
-                            <!-- file upload -->
-                            <form method="POST" action="/upload" enctype="multipart/form-data">
-                                @csrf
-                                <input type="file" id="file" name="file" class="form-control">
-                                <button type="submit">upload</button>
-                            </form>
+                            <div class="form-group mb-3">
+
+                                <input type="file" id="file" name="file" class="form-control"> 
+                            </div>
+
 
                             <div >
                                 <button type="submit" class="btn btn-info btn-sm">Submit</button>
@@ -54,7 +53,9 @@
         </div>
     </div>
 
-
+    @foreach ($errors->all() as $error)
+        <li>{{$error}}</li>
+    @endforeach
     <div class="row" style="min-height: 85vh">
         <!-- Test Case List -->
         <div class="col border border-dark" style="overflow-y: auto; max-height: 85vh;">
