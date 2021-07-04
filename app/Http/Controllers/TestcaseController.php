@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Testcase;
 use App\Models\Requirement;
 
-
 class TestcaseController extends Controller
 {
     /**
@@ -65,7 +64,6 @@ class TestcaseController extends Controller
 
         $testcase = new Testcase();
 
-
         // validate requirement_cd and project_cd
         $requirements = Requirement::get(); // this is limited by project_cd... parhaps
         foreach($requirements as $requirement){
@@ -82,14 +80,15 @@ class TestcaseController extends Controller
         $testcase->testcase_cd = $request->testcase_cd;
         $testcase->title = $request->title;
         $testcase->project_cd = $user_project_cd;
-        $testcase->testdata = $request->testdata;
-        $testcase->evidence = $request->testcase_cd.'_evidence';
         $testcase->status = 'Not start';
 
-        //file
-        $file_name = $request->file('file')->getClientOriginalName();
-        $request->file('file')->storeAs('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd, $file_name);
-
+        //file testdata
+        if($request->file('file_testdata')){
+            $file_name_testdata = $request->file('file_testdata')->getClientOriginalName();
+            $request->file('file_testdata')->storeAs('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd.'/testdata', $file_name_testdata);
+            $testcase->testdata = $file_name_testdata;
+        }
+        
         $testcase->save();
         return redirect('testcases');
     }
@@ -127,36 +126,34 @@ class TestcaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-      
         $testcase = Testcase::findOrFail($id);
         $user = \Auth::user();
         $user_project_cd = $user->project_cd;
 
-
         //title
-        if($request->title == null){
-            $testcase->title = $testcase->title;
-        }else{
-            $testcase->title = $request->title;
-        }
+        $testcase->title = ($request->title == null) ? $testcase->title : $request->title;
 
         //status
-        if($request->status == null){
-            $testcase->status = $testcase->status; 
-        }else{
-            $testcase->status  = $request->status ;
+        $testcase->status = ($request->status == null) ? $testcase->status : $request->status;
+
+
+         //file testdata
+        if($request->file('file_testdata')){
+            $file_name_testdata = $request->file('file_testdata')->getClientOriginalName();
+            $request->file('file_testdata')->storeAs('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd.'/testdata', $file_name_testdata);
+            $testcase->testdata = $file_name_testdata;
         }
-
-        // //file
-        // $file_name = $request->file('file')->getClientOriginalName();
-        // $request->file('file')->storeAs('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd, $file_name);
-
+        
+        //file evidence
+        if($request->file('file_evidence')){
+            $file_name_evidence = $request->file('file_evidence')->getClientOriginalName();
+            $request->file('file_evidence')->storeAs('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd.'/evidence', $file_name_evidence);
+            $testcase->evidence = $file_name_evidence;
+        }
+       
         $testcase->save();
         return redirect('testcases');
     }
-
-
 
     /**
      * Remove the specified resource from storage.

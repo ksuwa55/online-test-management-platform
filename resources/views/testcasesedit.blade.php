@@ -14,9 +14,16 @@
                 value="{{ $testcase->title }}"  required autofocus>
             </div>
 
-            <!-- file upload -->
+            <!-- file upload testdata -->
             <div class="form-group mb-3">
-                <input type="file" id="file" name="file" class="form-control"> 
+                <label for="file_testdata">testdata</label>
+                <input type="file" id="file_testdata" name="file_testdata" class="form-control"> 
+            </div> 
+
+            <!-- file upload evidence -->
+            <div class="form-group mb-3">
+                <label for="file_evidence">evidence</label>
+                <input type="file" id="file_evidence" name="file_evidence" class="form-control"> 
             </div> 
 
             <a href="{{ route('testcases.index') }}" class="btn btn-secondary mr-2"><i class="fa fa-arrow-left"></i>Back</a>

@@ -32,14 +32,10 @@
                                 <input type="text" placeholder="Requirements" id="requirement_cd" class="form-control" name="requirement_cd"
                                     required autofocus>
                             </div>
-                            <div class="form-group mb-3">
-                                <input type="text" placeholder="Test Data" id="testdata" class="form-control" name="testdata"
-                                    required autofocus>
-                            </div>
                             
                             <div class="form-group mb-3">
-
-                                <input type="file" id="file" name="file" class="form-control"> 
+                                <label for="file_testdata">testdata</label>
+                                <input type="file" id="file_testdata" name="file_testdata" class="form-control"> 
                             </div>
 
 
