@@ -52,9 +52,18 @@
                 <div class="card-header">
                     {{ $requirement->requirement_cd }}               
                 </div>
-                <div class="card-body">
+                <div class="card-body float-midle" >
                     <p class="card-text" > {{ $requirement->title }} </p>
+                    <form action="{{ route('requirements.destroy', $requirement->id) }}" style="display: inline" method='POST'>
+                        @csrf
+                        @method('DELETE')
+    
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-trash"></i> 
+                        </button>  
+                    </form>
                 </div>
+
             </a>
             @endforeach
         </div>

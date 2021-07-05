@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Requirement;
 use App\Models\Testcase;
+use Illuminate\Support\Facades\Storage;
 
 
 class ReqController extends Controller
@@ -96,7 +97,16 @@ class ReqController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = \Auth::user();
+        $project_cd = $user->project_cd;    // project_cd
+
+        $requirement = Requirement::findOrFail($id);
+        $requirement_cd = $requirement->requirement_cd; // requirement_cd
+
+        Storage::deleteDirectory('public/'.$project_cd.'/'.$requirement_cd);
+
+        $requirement->delete();
+        return redirect('requirements');
     }
 
     public function display($id){
