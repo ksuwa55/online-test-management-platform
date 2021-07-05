@@ -138,7 +138,6 @@ class TestcaseController extends Controller
         //status
         $testcase->status = ($request->status == null) ? $testcase->status : $request->status;
 
-
          //file testdata
         if($request->file('file_testdata')){
             $file_name_testdata = $request->file('file_testdata')->getClientOriginalName();
@@ -157,7 +156,7 @@ class TestcaseController extends Controller
         return redirect('testcases');
     }
 
-    public function downloadFile($id){
+    public function downloadTestdataFile($id){
         // project _cd
         $testcase = Testcase::findOrFail($id);
         $user = \Auth::user();
@@ -170,15 +169,51 @@ class TestcaseController extends Controller
         // testcase_cd
         $testcase_cd = $testcase->testcase_cd;
 
-        // file name
+        // condition by the type of file
         $file_name = $testcase->testdata;
-
-        // file path
         $file_path = 'public/'.$project_cd.'/'.$requirement_cd.'/'.$testcase_cd.'/testdata/'.$file_name;
+       
+            // $file_name = $testcase->evidence;
+            // $file_path = 'public/'.$project_cd.'/'.$requirement_cd.'/'.$testcase_cd.'/evidence/'.$file_name;
+        
 
+      
         // $mimeType = Storage::mimeType($file_path);
 
         // $headers = [['Content-Type' => $mimeType]];
+
+        // if($file_type == 'testdata')....
+
+        return Storage::download($file_path);
+    }
+
+    public function downloadEvidenceFile($id){
+        // project _cd
+        $testcase = Testcase::findOrFail($id);
+        $user = \Auth::user();
+        $project_cd = $user->project_cd;
+
+        // requirement_cd
+        $testcase = Testcase::findOrFail($id);
+        $requirement_cd = $testcase->requirement_cd;
+
+        // testcase_cd
+        $testcase_cd = $testcase->testcase_cd;
+
+        // condition by the type of file
+        $file_name = $testcase->evidence;
+        $file_path = 'public/'.$project_cd.'/'.$requirement_cd.'/'.$testcase_cd.'/evidence/'.$file_name;
+       
+            // $file_name = $testcase->evidence;
+            // $file_path = 'public/'.$project_cd.'/'.$requirement_cd.'/'.$testcase_cd.'/evidence/'.$file_name;
+        
+
+      
+        // $mimeType = Storage::mimeType($file_path);
+
+        // $headers = [['Content-Type' => $mimeType]];
+
+        // if($file_type == 'testdata')....
 
         return Storage::download($file_path);
     }

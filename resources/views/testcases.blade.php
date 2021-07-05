@@ -74,9 +74,13 @@
                         <td>{{ $testcase->title }}</td>
                         <td>{{ $testcase->requirement_cd }}</td>
                         <td>{{ $testcase->testdata }}
-                            <a href="{{ route('testcases.downloadFile', $testcase->id) }}" class="btn btn-info btn-sm">download   </a>
+                            <a href="{{ route('testcases.downloadTestdataFile', $testcase->id) }}"  style="display: flex; flex-direction:column;  max-width:7rem; margin-top:0.5rem;" class="btn btn-info btn-sm">
+                                 download   </a>
                         </td>
-                        <td>{{ $testcase->evidence }}</td>
+                        <td>{{ $testcase->evidence }}
+                            <a href="{{ route('testcases.downloadEvidenceFile', $testcase->id) }}"  style="display: flex; flex-direction:column;  max-width:7rem; margin-top:0.5rem;" class="btn btn-info btn-sm">
+                                download   </a>
+                        </td>
                         <td>
                             <form action="{{ route('testcases.update', $testcase->id) }}"  method='POST'>
                                 @csrf

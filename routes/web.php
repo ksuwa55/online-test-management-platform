@@ -52,7 +52,9 @@ Route::resource('calendar',CalendarController::class);
 Route::resource('tasks',TaskController::class);
 
 //Test case
-Route::get('testcases/{id}', [TestcaseController::class, 'downloadFile'])->name('testcases.downloadFile');
+Route::get('testcases/{id}/downloadtestdata', [TestcaseController::class, 'downloadTestdataFile'])->name('testcases.downloadTestdataFile');
+Route::get('testcases/{id}/downloadevidence', [TestcaseController::class, 'downloadEvidenceFile'])->name('testcases.downloadEvidenceFile');
+
 Route::resource('testcases',TestcaseController::class);
 
 //File upload
