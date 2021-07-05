@@ -73,7 +73,9 @@
                         <td>{{ $testcase->testcase_cd }}</td>
                         <td>{{ $testcase->title }}</td>
                         <td>{{ $testcase->requirement_cd }}</td>
-                        <td>{{ $testcase->testdata }}</td>
+                        <td>{{ $testcase->testdata }}
+                            <a href="{{ route('testcases.downloadFile', $testcase->id) }}" class="btn btn-info btn-sm">download   </a>
+                        </td>
                         <td>{{ $testcase->evidence }}</td>
                         <td>
                             <form action="{{ route('testcases.update', $testcase->id) }}"  method='POST'>

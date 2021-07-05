@@ -52,7 +52,7 @@ Route::resource('calendar',CalendarController::class);
 Route::resource('tasks',TaskController::class);
 
 //Test case
-// Route::get('/testcases', [TestcaseController::class, 'update_status'])->name('testcases.update_status');
+Route::get('testcases/{id}', [TestcaseController::class, 'downloadFile'])->name('testcases.downloadFile');
 Route::resource('testcases',TestcaseController::class);
 
 //File upload

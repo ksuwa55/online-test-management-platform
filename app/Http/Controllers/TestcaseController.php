@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Testcase;
 use App\Models\Requirement;
+use Illuminate\Support\Facades\Storage;
+
 
 class TestcaseController extends Controller
 {
@@ -153,6 +155,32 @@ class TestcaseController extends Controller
        
         $testcase->save();
         return redirect('testcases');
+    }
+
+    public function downloadFile($id){
+        // project _cd
+        $testcase = Testcase::findOrFail($id);
+        $user = \Auth::user();
+        $project_cd = $user->project_cd;
+
+        // requirement_cd
+        $testcase = Testcase::findOrFail($id);
+        $requirement_cd = $testcase->requirement_cd;
+
+        // testcase_cd
+        $testcase_cd = $testcase->testcase_cd;
+
+        // file name
+        $file_name = $testcase->testdata;
+
+        // file path
+        $file_path = 'public/'.$project_cd.'/'.$requirement_cd.'/'.$testcase_cd.'/testdata/'.$file_name;
+
+        // $mimeType = Storage::mimeType($file_path);
+
+        // $headers = [['Content-Type' => $mimeType]];
+
+        return Storage::download($file_path);
     }
 
     /**
