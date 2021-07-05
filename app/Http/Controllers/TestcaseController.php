@@ -172,17 +172,6 @@ class TestcaseController extends Controller
         // condition by the type of file
         $file_name = $testcase->testdata;
         $file_path = 'public/'.$project_cd.'/'.$requirement_cd.'/'.$testcase_cd.'/testdata/'.$file_name;
-       
-            // $file_name = $testcase->evidence;
-            // $file_path = 'public/'.$project_cd.'/'.$requirement_cd.'/'.$testcase_cd.'/evidence/'.$file_name;
-        
-
-      
-        // $mimeType = Storage::mimeType($file_path);
-
-        // $headers = [['Content-Type' => $mimeType]];
-
-        // if($file_type == 'testdata')....
 
         return Storage::download($file_path);
     }
@@ -203,17 +192,6 @@ class TestcaseController extends Controller
         // condition by the type of file
         $file_name = $testcase->evidence;
         $file_path = 'public/'.$project_cd.'/'.$requirement_cd.'/'.$testcase_cd.'/evidence/'.$file_name;
-       
-            // $file_name = $testcase->evidence;
-            // $file_path = 'public/'.$project_cd.'/'.$requirement_cd.'/'.$testcase_cd.'/evidence/'.$file_name;
-        
-
-      
-        // $mimeType = Storage::mimeType($file_path);
-
-        // $headers = [['Content-Type' => $mimeType]];
-
-        // if($file_type == 'testdata')....
 
         return Storage::download($file_path);
     }
@@ -226,8 +204,20 @@ class TestcaseController extends Controller
      */
     public function destroy($id)
     {
+
         $testcase = Testcase::findOrFail($id);
+        $user = \Auth::user();
+        $project_cd = $user->project_cd;    // project_cd
+
+        $testcase = Testcase::findOrFail($id);
+
+        $requirement_cd = $testcase->requirement_cd; // requirement_cd
+        $testcase_cd = $testcase->testcase_cd;       // testcase_cd
+
+        Storage::deleteDirectory('public/'.$project_cd.'/'.$requirement_cd.'/'.$testcase_cd);
+
         $testcase->delete();
+
         return redirect('testcases');
     }
 }
