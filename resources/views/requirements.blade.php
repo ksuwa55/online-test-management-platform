@@ -46,28 +46,32 @@
     <div class="row" style="min-height: 85vh">
 
         <!-- Requirements List -->
-        <div class="col-2 border border-dark" style="overflow-y: auto; max-height: 85vh;" >
+        <div class="col-3 border border-dark" style="overflow-y: auto; max-height: 85vh;" >
             @foreach($requirements as $requirement)
-            <a href="{{ route('requirements.display', $requirement->id) }}" class="card" style="margin: 7px 0;">
+            <div class="card" style="margin:7px 0;">
                 <div class="card-header">
-                    {{ $requirement->requirement_cd }}               
+                    <a href="{{ route('requirements.display', $requirement->id) }}">                    
+                        {{ $requirement->requirement_cd }}               
+                    </a>
                 </div>
-                <div class="card-body float-midle" >
+                <div class="card-body">
                     <p class="card-text" > {{ $requirement->title }} </p>
+                    <a href="{{ route('requirements.edit', $requirement->id) }}" class="btn btn-success btn-sm"  >
+                        <i class="fa fa-edit"></i> 
+                    </a>  
                     <form action="{{ route('requirements.destroy', $requirement->id) }}" style="display: inline" method='POST'>
                         @csrf
                         @method('DELETE')
     
-                        <button type="submit" class="btn btn-danger">
+                        <button type="submit" class="btn btn-danger btn-sm">
                             <i class="fa fa-trash"></i> 
                         </button>  
                     </form>
                 </div>
-
-            </a>
+            </div>
             @endforeach
         </div>
-        <div class="col-1"></div>
+        {{-- <div class="col-1"></div> --}}
 
         <!-- Test Case List -->
         <div class="col-9 border border-dark" style="overflow-y: auto; max-height: 85vh;">

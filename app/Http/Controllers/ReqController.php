@@ -20,7 +20,7 @@ class ReqController extends Controller
      */
     public function index()
     {  
-        $requirements = Requirement::get();
+        $requirements = Requirement::orderby('requirement_cd', 'asc')->get();
         return view('requirements',['requirements'=>$requirements]);
     }
 
@@ -74,7 +74,9 @@ class ReqController extends Controller
      */
     public function edit($id)
     {
-        //
+        $requirement= Requirement::findOrFail($id);
+        
+        return view('requirementsedit', compact('requirement'));
     }
 
     /**
@@ -86,7 +88,18 @@ class ReqController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $requirement = Requirement::findOrFail($id);
+        $user = \Auth::user();
+        $user_project_cd = $user->project_cd;
+
+        //title
+        $requirement->title = ($request->title == null) ? $requirement->title : $request->title;
+
+        //description
+        $requirement->description = ($request->title == null) ? $requirement->description : $request->description;
+
+        $requirement->save();
+        return redirect('requirements');
     }
 
     /**
@@ -111,7 +124,7 @@ class ReqController extends Controller
 
     public function display($id){
         $display_requirement = Requirement::findOrFail($id);
-        $requirements = Requirement::get();
+        $requirements = Requirement::orderby('requirement_cd', 'asc')->get();
 
         $testcases = Testcase::where('requirement_cd', '=' ,$display_requirement->requirement_cd)->get();
 

@@ -20,7 +20,7 @@ class TestcaseController extends Controller
      */
     public function index()
     {
-        $testcases = Testcase::get();
+        $testcases = Testcase::orderby('testcase_cd', 'asc')->get();
         $statuses = [
             [
                 'label' => 'Not start',

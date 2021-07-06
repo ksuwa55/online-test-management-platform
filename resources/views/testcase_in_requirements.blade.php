@@ -4,6 +4,7 @@
                 <h4>No selected</h4>
             @else
                 <h4>{{ $display_requirement->requirement_cd }}</h4>
+                <p>{{ $display_requirement->description }}</p>
             @endif
 
     </div>

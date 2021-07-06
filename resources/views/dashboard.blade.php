@@ -3,12 +3,54 @@
 @section('main-content')
 
 <div class="container mt-3">
+
+    <!-- model -->
     <div class="row">
-        <a href="#" class="btn btn-info" style="max-width: 12rem;">
+        <a href="#" class="btn btn-info" style="max-width: 12rem;" data-bs-toggle="modal" data-bs-target="#reportModal">
              <i class="fa fa-plus-circle"></i> Generate Report
         </a>       
     </div>
     <br>
+    <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="card">
+                    <form action="#" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <h4 class="card-header text-center">Generate a report</h3>
+                        <div class="card-body">
+                            <div class="form-group mb-3">
+                                <label class="container">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Status of case
+                                </label>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="container">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Achieve rate
+                                </label>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="container">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Remaining date
+                                </label>
+                            </div>
+                            <div >
+                                <button type="submit" class="btn btn-info btn-sm">Generate</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <div class="row">
         <div class="card text-white bg-warning mb-3 col-5" style="max-width: 20rem; height: 13rem;">
