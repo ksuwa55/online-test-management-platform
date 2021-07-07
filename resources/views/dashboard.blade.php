@@ -6,12 +6,14 @@
 
     <!-- model -->
     <div class="row">
-        <a href="#" class="btn btn-info" style="max-width: 12rem;" data-bs-toggle="modal" data-bs-target="#reportModal">
+        <a href="{{ URL::to('/dashboard/pdf') }}" class="btn btn-info" style="max-width: 12rem;" >
              <i class="fa fa-plus-circle"></i> Generate Report
         </a>       
     </div>
     <br>
-    <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+
+    {{-- data-bs-toggle="modal" data-bs-target="#reportModal"  --}}
+    {{-- <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="card">
@@ -49,7 +51,7 @@
             </div>
         </div>
     </div>
-
+ --}}
 
 
     <div class="row">
