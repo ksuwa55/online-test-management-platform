@@ -11,6 +11,9 @@ use PDF;
 class DashboardController extends Controller
 {
     public function index(){
+        // role of user
+        $user = \Auth::user();
+        $user_role = $user->role;
 
         // count of requirements
         $count_req = Requirement::count();
@@ -46,6 +49,7 @@ class DashboardController extends Controller
                                 ->with('count_testcase', $count_testcase)
                                 ->with('achieving_rate', $achieving_rate)
                                 ->with('final_date', $final_date)
+                                ->with('user_role', $user_role)
                                 ;
     }
     // public function time_diff($time_from, $time_to) 

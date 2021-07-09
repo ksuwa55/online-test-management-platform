@@ -6,9 +6,15 @@
 
     <!-- Modal (Pop up of requirements) -->
     <div class="row">
-        <a href="#" class="btn btn-info" style="max-width: 12rem;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-             <i class="fa fa-plus-circle"></i> Add Requirement
-        </a>   
+
+        @if ($user_role==='Administrator')
+            <a href="#" class="btn btn-info" style="max-width: 12rem;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="fa fa-plus-circle"></i> Add Requirement
+            </a>   
+        @else
+        <br>
+        @endif
+
     </div>
     <br>
 
@@ -56,17 +62,21 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text" > {{ $requirement->title }} </p>
-                    <a href="{{ route('requirements.edit', $requirement->id) }}" class="btn btn-success btn-sm"  >
-                        <i class="fa fa-edit"></i> 
-                    </a>  
-                    <form action="{{ route('requirements.destroy', $requirement->id) }}" style="display: inline" method='POST'>
-                        @csrf
-                        @method('DELETE')
-    
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="fa fa-trash"></i> 
-                        </button>  
-                    </form>
+                    @if ($user_role==='Administrator')
+                        <a href="{{ route('requirements.edit', $requirement->id) }}" class="btn btn-success btn-sm"  >
+                            <i class="fa fa-edit"></i> 
+                        </a>  
+                        <form action="{{ route('requirements.destroy', $requirement->id) }}" style="display: inline" method='POST'>
+                            @csrf
+                            @method('DELETE')
+        
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i> 
+                            </button>  
+                        </form>   
+                    @else
+                        <br>
+                    @endif
                 </div>
             </div>
             @endforeach

@@ -15,9 +15,12 @@ class TaskController extends Controller
      */
     public function index()
     {
-        
+        $user = \Auth::user();
+        $user_role = $user->role;
+
         $tasks = Task::get();
-        return view('tasks', compact('tasks'));
+        return view('tasks')->with('tasks',$tasks)
+                            ->with('user_role',$user_role);
     }
 
     /**

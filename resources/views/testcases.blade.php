@@ -6,9 +6,13 @@
 
     <!-- Modal (Pop up of testcase) -->
     <div class="row">
-        <a href="#" class="btn btn-info" style="max-width: 12rem;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-             <i class="fa fa-plus-circle"></i> Add Test Case
-        </a>   
+        @if ($user_role==='Administrator'||$user_role==='Manager'||$user_role==='Tester')
+            <a href="#" class="btn btn-info" style="max-width: 12rem;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="fa fa-plus-circle"></i> Add Test Case
+            </a>   
+        @else
+        <br>
+        @endif
     </div>
     <br>
 
@@ -82,39 +86,46 @@
                                 download   </a>
                         </td>
                         <td>
+
                             <form action="{{ route('testcases.update', $testcase->id) }}"  method='POST'>
                                 @csrf
                                 @method('PUT')
 
-                                <div style="display: flex; flex-direction:column; max-width:7rem;">
-                                    <select name="status" id="status" >
-                                        @foreach ($statuses as $status)
-                                            <option value="{{ $status['value'] }}"  {{ $testcase->status === $status['value'] ? 'selected' : '' }} >{{ $status['label'] }}</option>
-                                        @endforeach
-                                    </select>
-                                    
-                                    <button  onclick="alert('Status has been changed')" type="submit" class="btn btn-info btn-sm" style="max-width: 12rem; margin-top:0.5rem;">
-                                        <i class="fa fa-plus-circle"></i> change
-                                    </button>   
+                                <div style="display: flex; flex-direction:column; max-width:7rem;">                                   
+                                    @if ($user_role==='Administrator'||$user_role==='Manager'||$user_role==='Tester')
+                                        <select name="status" id="status" >
+                                            @foreach ($statuses as $status)
+                                                <option value="{{ $status['value'] }}"  {{ $testcase->status === $status['value'] ? 'selected' : '' }} >{{ $status['label'] }}</option>
+                                            @endforeach
+                                        </select>
+                                        <button  onclick="alert('Status has been changed')" type="submit" class="btn btn-info btn-sm" style="max-width: 12rem; margin-top:0.5rem;">
+                                            <i class="fa fa-plus-circle"></i> change
+                                        </button> 
+                                    @else
+                                        {{ $testcase->status }}
+                                        <br>
+                                    @endif
                                 </div>
                            </form>
                         </td>
                         <td>
-                            <div class="float-midle">
-                                <a href="{{ route('testcases.edit', $testcase->id) }}" class="btn btn-success"  >
-                                    <i class="fa fa-edit"></i> 
-                                </a>  
+                            @if ($user_role==='Administrator'||$user_role==='Manager'||$user_role==='Tester')
+                                <div class="float-midle">
+                                    <a href="{{ route('testcases.edit', $testcase->id) }}" class="btn btn-success"  >
+                                        <i class="fa fa-edit"></i> 
+                                    </a>  
 
 
-                                <form action="{{ route('testcases.destroy', $testcase->id) }}" style="display: inline" method='POST'>
-                                    @csrf
-                                    @method('DELETE')
+                                    <form action="{{ route('testcases.destroy', $testcase->id) }}" style="display: inline" method='POST'>
+                                        @csrf
+                                        @method('DELETE')
 
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fa fa-trash"></i> 
-                                    </button>  
-                                </form>
-                            </div>
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i> 
+                                        </button>  
+                                    </form>
+                                </div>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

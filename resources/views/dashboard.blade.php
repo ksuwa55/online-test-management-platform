@@ -6,9 +6,13 @@
 
     <!-- model -->
     <div class="row">
-        <a href="{{ URL::to('/dashboard/pdf') }}" class="btn btn-info" style="max-width: 12rem;" >
-             <i class="fa fa-plus-circle"></i> Generate Report
-        </a>       
+        @if ($user_role==='Administrator'||$user_role==='Manager')
+            <a href="{{ URL::to('/dashboard/pdf') }}" class="btn btn-info" style="max-width: 12rem;" >
+                <i class="fa fa-plus-circle"></i> Generate Report
+            </a>     
+        @else
+        <br>
+        @endif
     </div>
     <br>
 

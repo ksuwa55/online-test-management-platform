@@ -20,6 +20,8 @@ class TestcaseController extends Controller
      */
     public function index()
     {
+        $user = \Auth::user();
+        $user_role = $user->role;
         $testcases = Testcase::orderby('testcase_cd', 'asc')->get();
         $statuses = [
             [
@@ -40,7 +42,8 @@ class TestcaseController extends Controller
             ],
         ];
         return view('testcases')->with('testcases',$testcases)
-                                ->with('statuses',$statuses);
+                                ->with('statuses',$statuses)
+                                ->with('user_role',$user_role);
     }
 
     /**

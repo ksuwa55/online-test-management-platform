@@ -5,9 +5,14 @@
 
     <!-- Modal - create -->
     <div class="row">
-        <a href="#" class="btn btn-info" style="max-width: 12rem;" data-bs-toggle="modal" data-bs-target="#createModal">
+        @if ($user_role==='Administrator'||$user_role==='Manager')
+            <a href="#" class="btn btn-info" style="max-width: 12rem;" data-bs-toggle="modal" data-bs-target="#createModal">
                 <i class="fa fa-plus-circle"></i> Add Task
-        </a>   
+            </a>   
+        @else
+            <br><br>
+        @endif
+
     </div>
     <br>
 
@@ -68,19 +73,21 @@
                         <td>{{ $task->person_email }}</td>
                         <td>                   
                             <div class="float-middle">
-                                <a href="{{ route('tasks.edit', $task->id)}}" class="btn btn-success"  >
-                                    <i class="fa fa-edit"></i> 
-                                </a>  
+                                @if ($user_role==='Administrator'||$user_role==='Manager')
+                                    <a href="{{ route('tasks.edit', $task->id)}}" class="btn btn-success"  >
+                                        <i class="fa fa-edit"></i> 
+                                    </a>  
 
+                                    <form action="{{ route('tasks.destroy', $task->id) }}" style="display: inline" method='POST'>
+                                        @csrf
+                                        @method('DELETE')
 
-                                <form action="{{ route('tasks.destroy', $task->id) }}" style="display: inline" method='POST'>
-                                    @csrf
-                                    @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i> 
+                                        </button>  
+                                    </form>
+                                @endif
 
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fa fa-trash"></i> 
-                                    </button>  
-                                </form>
                             </div>
                         </td>
                     </tr>              
@@ -90,9 +97,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>

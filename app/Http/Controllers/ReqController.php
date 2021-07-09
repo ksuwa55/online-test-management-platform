@@ -20,8 +20,12 @@ class ReqController extends Controller
      */
     public function index()
     {  
+        $user = \Auth::user();
+        $user_role = $user->role;
+
         $requirements = Requirement::orderby('requirement_cd', 'asc')->get();
-        return view('requirements',['requirements'=>$requirements]);
+        return view('requirements')->with('requirements',$requirements)
+                                   ->with('user_role', $user_role);
     }
 
     /**
@@ -123,6 +127,9 @@ class ReqController extends Controller
     }
 
     public function display($id){
+        $user = \Auth::user();
+        $user_role = $user->role;
+
         $display_requirement = Requirement::findOrFail($id);
         $requirements = Requirement::orderby('requirement_cd', 'asc')->get();
 
@@ -131,6 +138,7 @@ class ReqController extends Controller
         return view('requirements')
                ->with('display_requirement',$display_requirement)
                ->with('requirements',$requirements)     
-               ->with('testcases',$testcases);
+               ->with('testcases',$testcases)
+               ->with('user_role',$user_role);
     }
 }
