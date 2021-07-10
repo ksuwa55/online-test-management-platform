@@ -14,8 +14,12 @@ class CalendarController extends Controller
      */
     public function index()
     {
+        $user = \Auth::user();
+        $user_email = $user->email;
         $tasks = Task::get();
-        return view('calendar', compact('tasks'));
+
+        return view('calendar')->with('tasks',$tasks)
+                               ->with('user_email',$user_email);
     }
 
 

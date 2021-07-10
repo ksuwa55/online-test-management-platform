@@ -22,12 +22,14 @@
                     title : '{{ $task->title }}',
                     start : '{{ $task->start }}',
                     end : '{{ $task->end }}',
-                    url : '{{ route('calendar.edit', $task->id) }}'
+                    url : '{{ route('calendar.edit', $task->id) }}',
+                    @if ($task->person_email == $user_email)
+                            color: 'orange',
+                    @endif
                 },
                 @endforeach
             ]
         })
     });
-
 </script>
 @endsection
