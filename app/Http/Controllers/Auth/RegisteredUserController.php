@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rule;
 
 class RegisteredUserController extends Controller
 {
@@ -36,7 +37,10 @@ class RegisteredUserController extends Controller
         $request->validate([
             'project_cd' => 'required|string|min:10|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/|exists:projects,project_cd',
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => ['required','string','email','max:255',
+                        Rule::unique('users')->
+                        where('project_cd', $request->project_cd),
+                    ],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 

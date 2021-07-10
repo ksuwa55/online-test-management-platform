@@ -17,9 +17,11 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('project_cd');
-            $table->string('email')->unique();
+            $table->string('email');
+            $table->unique(['project_cd','email'], 'projectcd_email_unique');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('role', ['Administrator', 'Manager', 'Developer', 'Tester']);
             $table->rememberToken();
             $table->timestamps();
         });
