@@ -37,18 +37,28 @@
                                     </div>
 
                                     <div class="d-grid mx-auto">
-                                        <button type="submit" class="btn btn-dark btn-block">Register</button>
+                                        <button type="submit" class="btn btn-dark btn-block">Register Project</button>
                                     </div>
                                 </div>
                             </form>
                             @foreach ($errors->all() as $error)
                                 <li>{{$error}}</li>
                             @endforeach
+                            <div class="flex items-center justify-end mt-4">
+                                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}"  style="margin-left:10px;">
+                                    {{ __('Will you register user?') }}
+                                </a>
+                    
+                                <a href="{{ route('register') }}" class="btn btn-xs btn-dark btn-sm pull-right col" style="margin-left:6px;">Register User</a>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
+       
     </main>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

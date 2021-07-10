@@ -18,7 +18,6 @@
     <div class="container">
       <div class="row">
         <div class="col-4"></div>
-        <a href="{{ route('register') }}" class="btn btn-xs btn-info pull-right col">Register</a>
         <div class="col"></div>
         <a href="{{ route('login') }}" class="btn btn-xs btn-info pull-right col">Login</a>
         <div class="col-4"></div>
