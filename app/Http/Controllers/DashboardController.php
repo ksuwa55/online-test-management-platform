@@ -22,7 +22,7 @@ class DashboardController extends Controller
         $count_testcase = Testcase::count();
 
         // acvieving rate
-        $completed_testcase = Testcase::where('status', 'completed')->count();
+        $completed_testcase = Testcase::where('status', 'Accepted')->count();
         
         if($count_testcase == 0){
             $achieving_rate = 0;
@@ -72,7 +72,7 @@ class DashboardController extends Controller
         $count_testcase = Testcase::count();
 
         // acvieving rate
-        $completed_testcase = Testcase::where('status', 'completed')->count();
+        $completed_testcase = Testcase::where('status', 'Accepted')->count();
         
         if($count_testcase == 0){
             $achieving_rate = 0;

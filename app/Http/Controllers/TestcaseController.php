@@ -25,20 +25,20 @@ class TestcaseController extends Controller
         $testcases = Testcase::orderby('testcase_cd', 'asc')->get();
         $statuses = [
             [
-                'label' => 'Not start',
-                'value' => 'Not start',
+                'label' => 'Waiting',
+                'value' => 'Waiting',
             ],
             [
-                'label' => 'In progress',
-                'value' => 'In progress',
+                'label' => 'Failed',
+                'value' => 'Failed',
             ],
             [
-                'label' => 'Pending',
-                'value' => 'Pending',
+                'label' => 'Succeed',
+                'value' => 'Succeed',
             ],
             [
-                'label' => 'Completed',
-                'value' => 'Completed',
+                'label' => 'Accepted',
+                'value' => 'Accepted',
             ],
         ];
         return view('testcases')->with('testcases',$testcases)
@@ -85,7 +85,7 @@ class TestcaseController extends Controller
         $testcase->testcase_cd = $request->testcase_cd;
         $testcase->title = $request->title;
         $testcase->project_cd = $user_project_cd;
-        $testcase->status = 'Not start';
+        $testcase->status = 'Waiting';
 
         //file testdata
         if($request->file('file_testdata')){
