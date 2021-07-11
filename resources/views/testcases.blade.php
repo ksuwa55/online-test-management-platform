@@ -42,6 +42,9 @@
                                 <input type="file" id="file_testdata" name="file_testdata" class="form-control"> 
                             </div>
 
+                            <div class="form-group mb-3">
+                                <textarea type="text"  placeholder="Description" class="form-control" id="description" name="description" rows="5"></textarea>
+                            </div>
 
                             <div >
                                 <button type="submit" class="btn btn-info btn-sm">Submit</button>
@@ -99,7 +102,7 @@
                                             @endforeach
                                         </select>
                                         <button  onclick="alert('Status has been changed')" type="submit" class="btn btn-info btn-sm" style="max-width: 12rem; margin-top:0.5rem;">
-                                            <i class="fa fa-plus-circle"></i> change
+                                            <i class="fa fa-check"></i> change
                                         </button> 
                                     @else
                                         {{ $testcase->status }}

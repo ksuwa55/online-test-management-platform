@@ -86,6 +86,7 @@ class TestcaseController extends Controller
         $testcase->title = $request->title;
         $testcase->project_cd = $user_project_cd;
         $testcase->status = 'Waiting';
+        $testcase->description = $request->description;
 
         //file testdata
         if($request->file('file_testdata')){
@@ -141,6 +142,10 @@ class TestcaseController extends Controller
 
         //status
         $testcase->status = ($request->status == null) ? $testcase->status : $request->status;
+
+        //description
+        $testcase->description = ($request->description == null) ? $testcase->description : $request->description;
+
 
         // the case that status == 'accept' and role == 'tester'
         if($user_role == 'Tester' && $request->status == 'Accepted'){

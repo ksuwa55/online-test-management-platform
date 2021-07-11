@@ -26,6 +26,12 @@
                 <input type="file" id="file_evidence" name="file_evidence" class="form-control"> 
             </div> 
 
+            
+            <div class="form-group mb-3">
+                <textarea type="text"  placeholder="Description" class="form-control" id="description" name="description"
+                rows="5">{{ $testcase->description }}</textarea>
+            </div>
+
             <a href="{{ route('testcases.index') }}" class="btn btn-secondary mr-2"><i class="fa fa-arrow-left"></i>Back</a>
 
             <button type="submit" class="btn btn-info ">                

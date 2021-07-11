@@ -70,7 +70,13 @@
                         <td>{{ $task->title }}</td>
                         <td>{{ $task->start }}</td>
                         <td>{{ $task->end }}</td>
-                        <td>{{ $task->person_email }}</td>
+                        <td>
+                            @foreach ($all_users as $user)
+                                @if ($task->person_email === $user->email )
+                                    {{ $user->name }}
+                                @endif
+                            @endforeach                        
+                        </td>
                         <td>                   
                             <div class="float-middle">
                                 @if ($user_role==='Administrator'||$user_role==='Manager')

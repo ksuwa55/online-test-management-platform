@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use DB;
+use App\Models\User;
 
 class TaskController extends Controller
 {
@@ -18,9 +19,13 @@ class TaskController extends Controller
         $user = \Auth::user();
         $user_role = $user->role;
 
+        $all_users = User::get();
+        // $user_names = $all_users->name;
+
         $tasks = Task::get();
         return view('tasks')->with('tasks',$tasks)
-                            ->with('user_role',$user_role);
+                            ->with('user_role',$user_role)
+                            ->with('all_users', $all_users);
     }
 
     /**

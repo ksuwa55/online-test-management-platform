@@ -35,8 +35,7 @@
                                     required autofocus>
                             </div>
                             <div class="form-group mb-3">
-                                <input type="text" placeholder="Description" id="description" class="form-control" name="description"
-                                    required autofocus>
+                                <textarea type="text"  placeholder="Description" class="form-control" id="description" name="description" rows="5"></textarea>
                             </div>
 
                             <div >
