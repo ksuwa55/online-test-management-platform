@@ -134,12 +134,18 @@ class TestcaseController extends Controller
         $testcase = Testcase::findOrFail($id);
         $user = \Auth::user();
         $user_project_cd = $user->project_cd;
+        $user_role = $user->role;
 
         //title
         $testcase->title = ($request->title == null) ? $testcase->title : $request->title;
 
         //status
         $testcase->status = ($request->status == null) ? $testcase->status : $request->status;
+
+        // the case that status == 'accept' and role == 'tester'
+        if($user_role == 'Tester' && $request->status == 'Accepted'){
+            return redirect('testcases');
+        }
 
          //file testdata
         if($request->file('file_testdata')){
