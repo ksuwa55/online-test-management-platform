@@ -45,12 +45,17 @@ class DashboardController extends Controller
             // $remaining_date = time_diff($today,$final_date);
         }
 
+        // count of test cases that is succeed
+        $count_succeed_testcase = Testcase::where('status', 'Succeed')->count();
+        $count_failed_testcase = Testcase::where('status', 'Failed')->count();
+
         return view('dashboard')->with('count_req', $count_req)
                                 ->with('count_testcase', $count_testcase)
                                 ->with('achieving_rate', $achieving_rate)
                                 ->with('final_date', $final_date)
                                 ->with('user_role', $user_role)
-                                ;
+                                ->with('count_succeed_testcase',$count_succeed_testcase)
+                                ->with('count_failed_testcase',$count_failed_testcase);
     }
     // public function time_diff($time_from, $time_to) 
     // {

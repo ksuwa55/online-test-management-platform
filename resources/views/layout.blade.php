@@ -25,6 +25,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
         <style>
+        
+
             .sidebar {
             top: 0;
             bottom: 0;
@@ -48,6 +50,20 @@
             .nav-link:hover{
                 background-color: #72a7f7;
             }
+
+            .notification mark{
+                border-radius: 50%;
+                color: white;
+            }
+
+            .notification .succeed{
+                background-color: rgb(241, 144, 120);
+            }
+
+            .notification .failed{
+                background-color: rgb(28, 170, 196);
+            }
+     
             </style>
 
 
@@ -77,6 +93,8 @@
                                 <a class="nav-link  text-white" href="{{ route('testcases.index') }}">
                                 {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg> --}}
                                 <span class="ml-2">Test Cases</span>
+                                <span class="notification"><mark class="succeed swing">{{ $count_succeed_testcase }}</mark></span>
+                                <span class="notification"><mark class="failed swing">1</mark></span>
                                 </a>
                             </li>
                             <li class="nav-item">

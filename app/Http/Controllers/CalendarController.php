@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\Testcase;
 
 class CalendarController extends Controller
 {
@@ -18,8 +19,15 @@ class CalendarController extends Controller
         $user_email = $user->email;
         $tasks = Task::get();
 
+        
+        // count of test cases that is succeed
+        $count_succeed_testcase = Testcase::where('status', 'Succeed')->count();
+        $count_failed_testcase = Testcase::where('status', 'Failed')->count();
+
         return view('calendar')->with('tasks',$tasks)
-                               ->with('user_email',$user_email);
+                               ->with('user_email',$user_email)
+                               ->with('count_succeed_testcase',$count_succeed_testcase)
+                               ->with('count_failed_testcase',$count_failed_testcase);
     }
 
 

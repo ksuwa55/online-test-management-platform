@@ -41,9 +41,17 @@ class TestcaseController extends Controller
                 'value' => 'Accepted',
             ],
         ];
+
+        
+        // count of test cases that is succeed
+        $count_succeed_testcase = Testcase::where('status', 'Succeed')->count();
+        $count_failed_testcase = Testcase::where('status', 'Failed')->count();
+
         return view('testcases')->with('testcases',$testcases)
                                 ->with('statuses',$statuses)
-                                ->with('user_role',$user_role);
+                                ->with('user_role',$user_role)                                   
+                                ->with('count_succeed_testcase',$count_succeed_testcase)
+                                ->with('count_failed_testcase',$count_failed_testcase);
     }
 
     /**
@@ -119,8 +127,13 @@ class TestcaseController extends Controller
     public function edit($id)
     {
         $testcase= Testcase::findOrFail($id);
-        
-        return view('testcasesedit', compact('testcase'));
+        // count of test cases that is succeed
+        $count_succeed_testcase = Testcase::where('status', 'Succeed')->count();
+        $count_failed_testcase = Testcase::where('status', 'Failed')->count();
+
+        return view('testcasesedit')->with('testcase',$testcase)
+                                    ->with('count_succeed_testcase',$count_succeed_testcase)
+                                    ->with('count_failed_testcase',$count_failed_testcase);
     }
 
     /**

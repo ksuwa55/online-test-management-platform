@@ -23,9 +23,15 @@ class ReqController extends Controller
         $user = \Auth::user();
         $user_role = $user->role;
 
+        // count of test cases that is succeed
+        $count_succeed_testcase = Testcase::where('status', 'Succeed')->count();
+        $count_failed_testcase = Testcase::where('status', 'Failed')->count();
+
         $requirements = Requirement::orderby('requirement_cd', 'asc')->get();
         return view('requirements')->with('requirements',$requirements)
-                                   ->with('user_role', $user_role);
+                                   ->with('user_role', $user_role)
+                                   ->with('count_succeed_testcase',$count_succeed_testcase)
+                                   ->with('count_failed_testcase',$count_failed_testcase);
     }
 
     /**
@@ -80,7 +86,13 @@ class ReqController extends Controller
     {
         $requirement= Requirement::findOrFail($id);
         
-        return view('requirementsedit', compact('requirement'));
+        // count of test cases that is succeed
+        $count_succeed_testcase = Testcase::where('status', 'Succeed')->count();
+        $count_failed_testcase = Testcase::where('status', 'Failed')->count();
+
+        return view('requirementsedit')->with('requirement', $requirement)
+                                       ->with('count_succeed_testcase',$count_succeed_testcase)
+                                       ->with('count_failed_testcase',$count_failed_testcase);
     }
 
     /**
@@ -134,11 +146,17 @@ class ReqController extends Controller
         $requirements = Requirement::orderby('requirement_cd', 'asc')->get();
 
         $testcases = Testcase::where('requirement_cd', '=' ,$display_requirement->requirement_cd)->get();
+        
+        // count of test cases that is succeed
+        $count_succeed_testcase = Testcase::where('status', 'Succeed')->count();
+        $count_failed_testcase = Testcase::where('status', 'Failed')->count();
 
         return view('requirements')
                ->with('display_requirement',$display_requirement)
                ->with('requirements',$requirements)     
                ->with('testcases',$testcases)
-               ->with('user_role',$user_role);
+               ->with('user_role',$user_role)
+               ->with('count_succeed_testcase',$count_succeed_testcase)
+               ->with('count_failed_testcase',$count_failed_testcase);
     }
 }

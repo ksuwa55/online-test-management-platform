@@ -6,6 +6,7 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\User;
+use App\Models\Testcase;
 
 class TaskController extends Controller
 {
@@ -20,12 +21,18 @@ class TaskController extends Controller
         $user_role = $user->role;
 
         $all_users = User::get();
-        // $user_names = $all_users->name;
 
+        // count of test cases that is succeed
+        $count_succeed_testcase = Testcase::where('status', 'Succeed')->count();
+        $count_failed_testcase = Testcase::where('status', 'Failed')->count();
+
+       
         $tasks = Task::get();
         return view('tasks')->with('tasks',$tasks)
                             ->with('user_role',$user_role)
-                            ->with('all_users', $all_users);
+                            ->with('all_users', $all_users)
+                            ->with('count_succeed_testcase',$count_succeed_testcase)
+                            ->with('count_failed_testcase',$count_failed_testcase);
     }
 
     /**
@@ -80,8 +87,13 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        
-        return view('tasksedit', compact('task'));
+        // count of test cases that is succeed
+        $count_succeed_testcase = Testcase::where('status', 'Succeed')->count();
+        $count_failed_testcase = Testcase::where('status', 'Failed')->count();
+
+        return view('tasksedit')->with('task',$task)
+                                ->with('count_succeed_testcase',$count_succeed_testcase)
+                                ->with('count_failed_testcase',$count_failed_testcase);
     }
 
     /**
