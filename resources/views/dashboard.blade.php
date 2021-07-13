@@ -59,7 +59,7 @@
 
 
     <div class="row">
-        <div class="card text-white bg-warning mb-3 col-5" style="max-width: 20rem; height: 9rem;">
+        <div class="card text-white bg-warning col-5" style="max-width: 20rem; height: 8rem;">
             <div class="card-body">
                 <br>
                 <h4 class="card-title">{{ $achieving_rate }}</h4>
@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="col-2"></div>
-        <div class="card text-white bg-danger mb-3 col-5" style="max-width: 20rem; height: 9rem;">
+        <div class="card text-white bg-danger col-5" style="max-width: 20rem; height: 8rem;">
             <div class="card-body">
                 <br>
                 <h4 class="card-title">{{ $final_date }}</h4>
@@ -76,8 +76,10 @@
         </div>
     </div>
     <div class="row">
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <div id="donut_single" style="width: 500px; height: 500px; "></div>
+        <div class="col-2">
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <div id="donut_single" style="width: 500px; height: 500px;  "></div>
+        </div>
     </div>
 </div>
 

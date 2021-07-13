@@ -159,6 +159,8 @@ class TestcaseController extends Controller
         //description
         $testcase->description = ($request->description == null) ? $testcase->description : $request->description;
 
+        //bug comment
+        $testcase->bug_comment = ($request->bug_comment == null) ? $testcase->bug_comment : $request->bug_comment;
 
         // the case that status == 'accept' and role == 'tester'
         if($user_role == 'Tester' && $request->status == 'Accepted'){
@@ -246,5 +248,17 @@ class TestcaseController extends Controller
         $testcase->delete();
 
         return redirect('testcases');
+    }
+
+    public function display_descriptions($id){
+        $testcase = Testcase::findOrFail($id);
+
+        // count of test cases that is succeed
+        $count_succeed_testcase = Testcase::where('status', 'Succeed')->count();
+        $count_failed_testcase = Testcase::where('status', 'Failed')->count();
+
+        return view('testcase_desc')->with('testcase', $testcase)
+                                    ->with('count_succeed_testcase',$count_succeed_testcase)
+                                    ->with('count_failed_testcase',$count_failed_testcase);
     }
 }

@@ -54,6 +54,7 @@ Route::resource('calendar',CalendarController::class);
 Route::resource('tasks',TaskController::class);
 
 //Test case
+Route::get('testcases/{id}', [TestcaseController::class, 'display_descriptions'])->name('testcases.display_descriptions');
 Route::get('testcases/{id}/downloadtestdata', [TestcaseController::class, 'downloadTestdataFile'])->name('testcases.downloadTestdataFile');
 Route::get('testcases/{id}/downloadevidence', [TestcaseController::class, 'downloadEvidenceFile'])->name('testcases.downloadEvidenceFile');
 

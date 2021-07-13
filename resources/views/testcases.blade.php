@@ -77,7 +77,7 @@
                 <tbody>
                     @foreach ($testcases as $testcase)                        
                     <tr>
-                        <td>{{ $testcase->testcase_cd }}</td>
+                        <td><a href="{{ route('testcases.display_descriptions', $testcase->id) }}">{{ $testcase->testcase_cd }}</a></td>
                         <td>{{ $testcase->title }}</td>
                         <td>{{ $testcase->requirement_cd }}</td>
                         <td>
