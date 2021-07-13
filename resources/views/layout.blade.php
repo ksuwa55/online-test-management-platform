@@ -24,6 +24,7 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
+
         <style>
         
 
@@ -34,7 +35,7 @@
             z-index: 100;
             padding: 60px 0 0;
             z-index: 99;
-            height:100vh;
+            height:140vh;
             }
             
             @media (max-width: 767.98px) {
@@ -138,7 +139,6 @@
 
                 <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-       
    
     </body>
 </html>
