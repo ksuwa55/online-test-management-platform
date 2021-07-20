@@ -113,12 +113,21 @@ class DashboardController extends Controller
         //         ->with('achieving_rate', $achieving_rate)
         //         ->with('final_date', $final_date)
         //         ;
+        // count of test cases that is succeed
+        $count_succeed_testcase = Testcase::where('status', 'Succeed')->count();
+        $count_failed_testcase = Testcase::where('status', 'Failed')->count();
+        $count_waiting_testcase = Testcase::where('status', 'Waiting')->count();
+        $count_accepted_testcase = Testcase::where('status', 'Accepted')->count();
 
         $data = [
             'count_req' => $count_req,
             'count_testcase' => $count_testcase,
             'achieving_rate' => $achieving_rate,
-            'final_date' => $final_date
+            'final_date' => $final_date,
+            'count_succeed_testcase' => $count_succeed_testcase,
+            'count_failed_testcase' => $count_failed_testcase,
+            'count_waiting_testcase' => $count_waiting_testcase,
+            'count_accepted_testcase' => $count_accepted_testcase
         ];
 
         $pdf = PDF::loadView('report', $data);
