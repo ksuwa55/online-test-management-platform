@@ -59,6 +59,12 @@
     @foreach ($errors->all() as $error)
         <li>{{$error}}</li>
     @endforeach
+
+    <!-- Flash message -->
+    @if (session('flash_message'))
+        <script>alert('{{ session('flash_message') }}')</script>    
+    @endif
+
     <div class="row" style="min-height: 85vh">
         <!-- Test Case List -->
         <div class="col border border-dark" style="overflow-y: auto; max-height: 85vh;">
@@ -101,7 +107,7 @@
                                                 <option value="{{ $status['value'] }}"  {{ $testcase->status === $status['value'] ? 'selected' : '' }} >{{ $status['label'] }}</option>
                                             @endforeach
                                         </select>
-                                        <button  onclick="alert('Status has been changed')" type="submit" class="btn btn-info btn-sm" style="max-width: 12rem; margin-top:0.5rem;">
+                                        <button  type="submit" class="btn btn-info btn-sm" style="max-width: 12rem; margin-top:0.5rem;">
                                             <i class="fa fa-check"></i> change
                                         </button> 
                                     @else

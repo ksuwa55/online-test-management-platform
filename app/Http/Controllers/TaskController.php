@@ -64,6 +64,7 @@ class TaskController extends Controller
         $task->project_cd = $user_project_cd;
 
         $task->save();
+        session()->flash('flash_message', 'task successfully stored');
         return redirect('tasks');
     }
 
@@ -116,6 +117,7 @@ class TaskController extends Controller
         $task->person_email = $request->person_email;
 
         $task->save();
+        session()->flash('flash_message', 'task successfully updated');
         return redirect('tasks');
     }
 
@@ -129,6 +131,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         $task->delete();
+        session()->flash('flash_message', 'task successfully deleted');
         return redirect('tasks');
     }
 }

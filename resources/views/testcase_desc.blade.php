@@ -2,7 +2,7 @@
     
 @section('main-content')
 
-<div class="card" style="width:50%; margin-top:5em; margin-left:15em;">
+<div class="card" style="width:70%; margin-top:5em; margin-left:12em;">
 
     <h4 class="card-header text-center"> {{ $testcase->testcase_cd }}: {{$testcase->title}}</h3>
 

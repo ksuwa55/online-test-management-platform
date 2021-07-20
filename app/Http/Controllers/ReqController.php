@@ -62,6 +62,7 @@ class ReqController extends Controller
         $requirement->project_cd = $user_project_cd;
 
         $requirement->save();
+        session()->flash('flash_message', 'requirement successfully stored');
         return redirect('requirements');
     }
 
@@ -115,6 +116,7 @@ class ReqController extends Controller
         $requirement->description = ($request->title == null) ? $requirement->description : $request->description;
 
         $requirement->save();
+        session()->flash('flash_message', 'requirement successfully updated');
         return redirect('requirements');
     }
 
@@ -135,6 +137,7 @@ class ReqController extends Controller
         Storage::deleteDirectory('public/'.$project_cd.'/'.$requirement_cd);
 
         $requirement->delete();
+        session()->flash('flash_message', 'requirement successfully deleted');
         return redirect('requirements');
     }
 

@@ -104,6 +104,7 @@ class TestcaseController extends Controller
         }
         
         $testcase->save();
+        session()->flash('flash_message', 'test case successfully stored');
         return redirect('testcases');
     }
 
@@ -150,6 +151,15 @@ class TestcaseController extends Controller
         $user_project_cd = $user->project_cd;
         $user_role = $user->role;
 
+        // check whether already file exists
+        if($testcase->evidence != null){
+            $current_evidence = $testcase->evidence;
+        }
+
+        if($testcase->testdata != null){
+            $current_testdata = $testcase->testdata;
+        }
+
         //title
         $testcase->title = ($request->title == null) ? $testcase->title : $request->title;
 
@@ -172,6 +182,8 @@ class TestcaseController extends Controller
             $file_name_testdata = $request->file('file_testdata')->getClientOriginalName();
             $request->file('file_testdata')->storeAs('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd.'/testdata', $file_name_testdata);
             $testcase->testdata = $file_name_testdata;
+
+            Storage::delete('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd.'/testdata/'.$current_testdata);
         }
         
         //file evidence
@@ -179,9 +191,12 @@ class TestcaseController extends Controller
             $file_name_evidence = $request->file('file_evidence')->getClientOriginalName();
             $request->file('file_evidence')->storeAs('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd.'/evidence', $file_name_evidence);
             $testcase->evidence = $file_name_evidence;
+
+            Storage::delete('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd.'/evidence/'.$current_evidence);
         }
        
         $testcase->save();
+        session()->flash('flash_message', 'test case successfully updated');
         return redirect('testcases');
     }
 
@@ -246,7 +261,7 @@ class TestcaseController extends Controller
         Storage::deleteDirectory('public/'.$project_cd.'/'.$requirement_cd.'/'.$testcase_cd);
 
         $testcase->delete();
-
+        session()->flash('flash_message', 'test case successfully deleted');
         return redirect('testcases');
     }
 

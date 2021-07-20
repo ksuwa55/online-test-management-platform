@@ -51,6 +51,12 @@
         </div>
     </div>
 
+    
+    <!-- Flash message -->
+    @if (session('flash_message'))
+        <script>alert('{{ session('flash_message') }}')</script>    
+    @endif
+    
     <!-- Task table -->
     <div class="row" style="min-height: 85vh">
         <div class="col border border-dark" style="overflow-y: auto; max-height: 100vh;">

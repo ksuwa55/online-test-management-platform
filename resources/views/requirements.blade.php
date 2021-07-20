@@ -48,6 +48,11 @@
         </div>
     </div>
 
+        <!-- Flash message -->
+    @if (session('flash_message'))
+        <script>alert('{{ session('flash_message') }}')</script>    
+    @endif
+    
     <div class="row" style="min-height: 85vh">
 
         <!-- Requirements List -->
