@@ -152,13 +152,8 @@ class TestcaseController extends Controller
         $user_role = $user->role;
 
         // check whether already file exists
-        if($testcase->evidence != null){
-            $current_evidence = $testcase->evidence;
-        }
-
-        if($testcase->testdata != null){
-            $current_testdata = $testcase->testdata;
-        }
+        $current_testdata = ($testcase->testdata != null) ? $testcase->testdata : null;
+        $current_evidence = ($testcase->evidence != null) ? $testcase->evidence : null;
 
         //title
         $testcase->title = ($request->title == null) ? $testcase->title : $request->title;
@@ -183,7 +178,9 @@ class TestcaseController extends Controller
             $request->file('file_testdata')->storeAs('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd.'/testdata', $file_name_testdata);
             $testcase->testdata = $file_name_testdata;
 
-            Storage::delete('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd.'/testdata/'.$current_testdata);
+            if($current_testdata != null){
+                Storage::delete('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd.'/testdata/'.$current_testdata);
+            }
         }
         
         //file evidence
@@ -192,7 +189,9 @@ class TestcaseController extends Controller
             $request->file('file_evidence')->storeAs('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd.'/evidence', $file_name_evidence);
             $testcase->evidence = $file_name_evidence;
 
-            Storage::delete('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd.'/evidence/'.$current_evidence);
+            if($current_evidence != null){
+                Storage::delete('public/'.$user_project_cd.'/'.$testcase->requirement_cd.'/'.$testcase->testcase_cd.'/evidence/'.$current_evidence);
+            }
         }
        
         $testcase->save();
