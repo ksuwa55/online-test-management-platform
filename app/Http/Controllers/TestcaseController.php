@@ -22,7 +22,7 @@ class TestcaseController extends Controller
     {
         $user = \Auth::user();
         $user_role = $user->role;
-        $testcases = Testcase::orderby('testcase_cd', 'asc')->get();
+        $testcases = Testcase::orderby('requirement_cd', 'asc')->get();
         $statuses = [
             [
                 'label' => 'Waiting',
@@ -86,7 +86,7 @@ class TestcaseController extends Controller
         if(in_array($request->requirement_cd, $requirement_cds)){
             $testcase->requirement_cd = $request->requirement_cd;
         }else{
-            return redirect('testcases');
+            return back();
         }
 
         // asigne to test case
@@ -105,7 +105,7 @@ class TestcaseController extends Controller
         
         $testcase->save();
         session()->flash('flash_message', 'test case successfully stored');
-        return redirect('testcases');
+        return back();
     }
 
     /**
@@ -169,7 +169,7 @@ class TestcaseController extends Controller
 
         // the case that status == 'accept' and role == 'tester'
         if($user_role == 'Tester' && $request->status == 'Accepted'){
-            return redirect('testcases');
+            return back();
         }
 
          //file testdata
