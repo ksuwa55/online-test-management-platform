@@ -39,7 +39,6 @@
                                     <div class="d-grid mx-auto">
                                         <button type="submit" class="btn btn-dark btn-block">Register Project</button>
                                     </div>
-                                </div>
                             </form>
                             @foreach ($errors->all() as $error)
                                 <li>{{$error}}</li>
@@ -56,7 +55,6 @@
                     </div>
                 </div>
             </div>
-            
         </div>
        
     </main>
