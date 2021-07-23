@@ -25,7 +25,7 @@
 
                         <div class="card-body">
                             <form action="{{ route('register_project.store') }}" method="POST">
-                                    @csrf
+                                {{ csrf_field() }}
                                     <div class="form-group mb-3">
                                         <input type="text" placeholder="Project Name" id="project_name" class="form-control" name="project_name"
                                             required autofocus>
