@@ -25,20 +25,20 @@
 
                         <div class="card-body">
                             <form action="{{ route('register_project.store') }}" method="POST">
-                                {{ csrf_field() }}
-                                    <div class="form-group mb-3">
-                                        <input type="text" placeholder="Project Name" id="project_name" class="form-control" name="project_name"
-                                            required autofocus>
-                                    </div>
+                                @csrf
+                                <div class="form-group mb-3">
+                                    <input type="text" placeholder="Project Name" id="project_name" class="form-control" name="project_name"
+                                        required autofocus>
+                                </div>
 
-                                    <div class="form-group mb-3">
-                                        <input type="text" placeholder="Project Code" id="project_cd" class="form-control"
-                                            name="project_cd" required autofocus>
-                                    </div>
+                                <div class="form-group mb-3">
+                                    <input type="text" placeholder="Project Code" id="project_cd" class="form-control"
+                                        name="project_cd" required autofocus>
+                                </div>
 
-                                    <div class="d-grid mx-auto">
-                                        <button type="submit" class="btn btn-dark btn-block">Register Project</button>
-                                    </div>
+                                <div class="d-grid mx-auto">
+                                    <button type="submit" class="btn btn-dark btn-block">Register Project</button>
+                                </div>
                             </form>
                             @foreach ($errors->all() as $error)
                                 <li>{{$error}}</li>
