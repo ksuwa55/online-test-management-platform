@@ -47,7 +47,7 @@ class ProjectController extends Controller
         $project->project_name = $request->project_name;
         $project->project_cd = $request->project_cd;
         $project->save();
-        return view('succeed_register_project');
+        return redirect('register_project');
     }
 
     /**
