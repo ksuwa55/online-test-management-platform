@@ -36,7 +36,7 @@ Route::resource('register_project',ProjectController::class);
 // })->middleware(['auth'])->name('dashboard');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
-Route::get('/dashboard/pdf', [DashboardController::class, 'createPDF']);
+Route::post('/dashboard/pdf', [DashboardController::class, 'createPDF']);
 
 
 

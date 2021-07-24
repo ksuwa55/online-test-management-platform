@@ -39,10 +39,6 @@ class DashboardController extends Controller
         }else{
             $final_date_record = Task::orderBy('end', 'DESC')->first();
             $final_date = $final_date_record->end;
-            // $today = strtotime($today);
-            // $final_date = strtotime($final_date);
-    
-            // $remaining_date = time_diff($today,$final_date);
         }
 
         // count of test cases that is succeed
@@ -64,18 +60,9 @@ class DashboardController extends Controller
                                 ->with('count_accepted_testcase',$count_accepted_testcase)
                                 ->with('total_count',$total_count);
     }
-    // public function time_diff($time_from, $time_to) 
-    // {
-    //     // 日時差を秒数で取得
-    //     $dif = $time_to - $time_from;
-
-    //     // 日付単位の差
-    //     $dif_days = (strtotime(date("Y-m-d", $dif)) - strtotime("1970-01-01")) / 86400;
-    //     return "{$dif_days}days ";
-    // }
     
     // Generate PDF
-    public function createPDF() {
+    public function createPDF(Request $request) {
 
         // count of requirements
         $count_req = Requirement::count();
@@ -89,7 +76,7 @@ class DashboardController extends Controller
         if($count_testcase == 0){
             $achieving_rate = 0;
         }else{
-            $achieving_rate = $completed_testcase / $count_testcase * 100 . '%';
+            $achieving_rate =  round(($completed_testcase / $count_testcase * 100 ), 0). '%';
         }
 
         // remaining date
@@ -101,23 +88,13 @@ class DashboardController extends Controller
         }else{
             $final_date_record = Task::orderBy('end', 'DESC')->first();
             $final_date = $final_date_record->end;
-            // $today = strtotime($today);
-            // $final_date = strtotime($final_date);
-
-            // $remaining_date = time_diff($today,$final_date);
         }
 
-        // // share data to view
-        // view()->with('count_req', $count_req)
-        //         ->with('count_testcase', $count_testcase)
-        //         ->with('achieving_rate', $achieving_rate)
-        //         ->with('final_date', $final_date)
-        //         ;
-        // count of test cases that is succeed
         $count_succeed_testcase = Testcase::where('status', 'Succeed')->count();
         $count_failed_testcase = Testcase::where('status', 'Failed')->count();
         $count_waiting_testcase = Testcase::where('status', 'Waiting')->count();
         $count_accepted_testcase = Testcase::where('status', 'Accepted')->count();
+        $comment = $request->comment;
 
         $data = [
             'count_req' => $count_req,
@@ -127,7 +104,8 @@ class DashboardController extends Controller
             'count_succeed_testcase' => $count_succeed_testcase,
             'count_failed_testcase' => $count_failed_testcase,
             'count_waiting_testcase' => $count_waiting_testcase,
-            'count_accepted_testcase' => $count_accepted_testcase
+            'count_accepted_testcase' => $count_accepted_testcase,
+            'comment' => $comment
         ];
 
         $pdf = PDF::loadView('report', $data);

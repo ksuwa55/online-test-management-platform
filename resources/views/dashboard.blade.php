@@ -4,10 +4,10 @@
 
 <div class="container mt-3">
 
-    <!-- model -->
-    <div class="row">
+    <!-- model href="" -->
+    <div class="row" >
         @if ($user_role==='Administrator'||$user_role==='Manager')
-            <a href="{{ URL::to('/dashboard/pdf') }}" class="btn btn-info" style="max-width: 12rem;" >
+            <a class="btn btn-info" style="max-width: 12rem;" data-bs-toggle="modal" data-bs-target="#reportModal">
                 <i class="fa fa-plus-circle"></i> Generate Report
             </a>     
         @else
@@ -17,34 +17,18 @@
     <br>
 
     {{-- data-bs-toggle="modal" data-bs-target="#reportModal"  --}}
-    {{-- <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+    <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="card">
-                    <form action="#" method="POST" enctype="multipart/form-data">
+                    <form action="{{ URL::to('/dashboard/pdf') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        {{-- {{ method_field('GET') }} --}}
                         <h4 class="card-header text-center">Generate a report</h3>
                         <div class="card-body">
                             <div class="form-group mb-3">
-                                <label class="container">
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                    Status of case
-                                </label>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label class="container">
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                    Achieve rate
-                                </label>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label class="container">
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                    Remaining date
-                                </label>
+                                <textarea type="text"  placeholder="Comment" class="form-control" id="comment" name="comment"
+                                rows="5"></textarea>
                             </div>
                             <div >
                                 <button type="submit" class="btn btn-info btn-sm">Generate</button>
@@ -55,7 +39,7 @@
             </div>
         </div>
     </div>
- --}}
+
 
 
     <div class="row">

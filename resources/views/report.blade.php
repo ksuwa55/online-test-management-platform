@@ -13,33 +13,45 @@
 <body>
     
     <div class="container mt-3">
-            <p>Achieving rate</p>
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ $achieving_rate }}%;">
-                    {{ $achieving_rate }}
-                </div>
-            </div> 
+
+        <div class="border border-dark" style="border-style: solid; max-height: 85vh;">
+            <p style="padding: 5px;">{{ $comment }}</p>
+        </div>
+        <br>
+
+        <p>Achievement rate</p>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ $achieving_rate }}%;">
+                {{ $achieving_rate }}
+            </div>
+        </div> 
+
+        <br>
+        <table class="table table-striped" style="margin-top:7px;">
+            <thead>
+                <tr>
+                    <th scope="col">Final Date</th>
+                    <th scope="col">Waiting Test Case</th>
+                    <th scope="col">Succeed Test Case</th>
+                    <th scope="col">Failed Test Case</th>
+                    <th scope="col">Accepted Test Case</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="col">{{ $final_date }}</td>
+                    <td scope="col">{{ $count_waiting_testcase }}</td>
+                    <td scope="col">{{ $count_succeed_testcase }}</td>
+                    <td scope="col">{{ $count_failed_testcase }}</td>
+                    <td scope="col">{{ $count_accepted_testcase }}</td>
+
+                </tr>
+            </tbody>
+        </table>
 
         <br>
 
-            <div class="card  bg-danger mb-3 " style="max-width: 20rem; height: 13rem;">
-                <div class="card-body">
-                    <br>
-                    <h4 class="card-title" style="padding-left: 10px;">{{ $count_succeed_testcase }}</h4>
-                    <p class="card-text" style="padding-left: 10px;">Succeed Test Case</p>
-                </div>
-            </div>
-            <div class="card  bg-info mb-3" style="max-width: 20rem; height: 13rem;">
-                <div class="card-body">
-                    <br>
-                    <h4 class="card-title" style="padding-left: 10px;">{{ $count_failed_testcase }}</h4>
-                    <p class="card-text" style="padding-left: 10px;">Failed Test Case</p>
-                </div>
-            </div>
-            
-            <br>
-            <p class="card-text">Finish Date is {{ $final_date }}</p>
-       
     </div>
 
     <!-- Bootstrap JS -->
