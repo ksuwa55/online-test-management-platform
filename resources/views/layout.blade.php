@@ -16,13 +16,15 @@
 
         <!--  jQuery -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        {{-- <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script> --}}
 
         <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+        {{-- <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> --}}
 
         <!-- Bootstrap Date-Picker Plugin -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        
+        <!-- Full calendar -->
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
 
 

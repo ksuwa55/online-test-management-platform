@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Models\User;
 use App\Models\Testcase;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -60,8 +61,13 @@ class TaskController extends Controller
 
         $task = new Task();
         $task->title = $request->title;
-        $task->start = $request->start;
-        $task->end = $request->end;
+        // $task->start = $request->start;
+        $task->start = Carbon::createFromFormat('m/d/Y', $request->start)->format('Y-m-d');
+        // $task->end = $request->end;
+
+        $task->end = Carbon::createFromFormat('m/d/Y', $request->end)->format('Y-m-d');
+
+
         $task->person_email = $request->person_email;
         $task->project_cd = $user_project_cd;
 

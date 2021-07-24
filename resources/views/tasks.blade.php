@@ -69,7 +69,14 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <p class="card-text" > {{ $task->start }} - {{$task->end}} </p>
+                    <p class="card-text">                            
+                        @foreach ($all_users as $user)
+                            @if ($task->person_email === $user->email )
+                            Personne : {{ $user->name }}
+                            @endif
+                        @endforeach     
+                    </p>
+                    <p class="card-text" > {{ $task->start }}~{{$task->end}} </p>
                     @if ($user_role==='Administrator')
                         <a href="{{ route('tasks.edit', $task->id)}}" class="btn btn-success btn-sm"  >
                             <i class="fa fa-edit"></i> 
@@ -120,8 +127,10 @@
         </script>
 </div>
 
-{{-- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> --}}
 <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
 <script>
     $('.date').datepicker({
         autoclose: true,
