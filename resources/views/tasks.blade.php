@@ -59,58 +59,68 @@
     
     <!-- Task table -->
     <div class="row" style="min-height: 85vh">
-        <div class="col border border-dark" style="overflow-y: auto; max-height: 100vh;">
-            <table class="table table-striped" style="margin-top:7px;">
-                <thead>
-                    <tr>
-                        <th scope="col">Task</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">End Date</th>
-                        <th scope="col">Person</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($tasks as $task)
-                    <tr>
-                        <td>{{ $task->title }}</td>
-                        <td>{{ $task->start }}</td>
-                        <td>{{ $task->end }}</td>
-                        <td>
-                            @foreach ($all_users as $user)
-                                @if ($task->person_email === $user->email )
-                                    {{ $user->name }}
-                                @endif
-                            @endforeach                        
-                        </td>
-                        <td>                   
-                            <div class="float-middle">
-                                @if ($user_role==='Administrator'||$user_role==='Manager')
-                                    <a href="{{ route('tasks.edit', $task->id)}}" class="btn btn-success"  >
-                                        <i class="fa fa-edit"></i> 
-                                    </a>  
 
-                                    <form action="{{ route('tasks.destroy', $task->id) }}" style="display: inline" method='POST'>
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i> 
-                                        </button>  
-                                    </form>
-                                @endif
-
-                            </div>
-                        </td>
-                    </tr>              
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="col-3 border border-dark" style="overflow-y: auto; max-height: 100vh;" >
+            @foreach($tasks as $task)
+            <div class="card" style="margin:7px 0;">
+                <div class="card-header">
+                    <a href="">                    
+                        {{ $task->title }}               
+                    </a>
+                </div>
+                <div class="card-body">
+                    <p class="card-text" > {{ $task->start }} - {{$task->end}} </p>
+                    @if ($user_role==='Administrator')
+                        <a href="{{ route('tasks.edit', $task->id)}}" class="btn btn-success btn-sm"  >
+                            <i class="fa fa-edit"></i> 
+                        </a>  
+                        <form action="{{ route('tasks.destroy', $task->id) }}" style="display: inline" method='POST'>
+                            @csrf
+                            @method('DELETE')
+        
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i> 
+                            </button>  
+                        </form>   
+                    @else
+                        <br>
+                    @endif
+                </div>
+            </div>
+            @endforeach
         </div>
-    </div>
+
+        <div class="col-9 border border-dark" style="overflow-y: auto; max-height: 100vh;">
+            <div id='calendar'></div>
+        </div>
+
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
+        <script>
+            $(document).ready(function() {
+                // page is now ready, initialize the calendar...
+                $('#calendar').fullCalendar({
+                    // put your options and callbacks here
+                    events : [
+                        @foreach($tasks as $task)
+                        {
+                            title : '{{ $task->title }}',
+                            start : '{{ $task->start }}',
+                            end : '{{ $task->end }}',
+                            url : '{{ route('tasks.edit', $task->id) }}',
+                            @if ($task->person_email == $user_email)
+                                    color: 'orange',
+                            @endif
+                        },
+                        @endforeach
+                    ]
+                })
+            });
+        </script>
 </div>
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+{{-- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> --}}
 <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
 <script>
     $('.date').datepicker({

@@ -19,6 +19,7 @@ class TaskController extends Controller
     {
         $user = \Auth::user();
         $user_role = $user->role;
+        $user_email = $user->email;
 
         $all_users = User::get();
 
@@ -31,6 +32,7 @@ class TaskController extends Controller
         return view('tasks')->with('tasks',$tasks)
                             ->with('user_role',$user_role)
                             ->with('all_users', $all_users)
+                            ->with('user_email',$user_email)
                             ->with('count_succeed_testcase',$count_succeed_testcase)
                             ->with('count_failed_testcase',$count_failed_testcase);
     }
