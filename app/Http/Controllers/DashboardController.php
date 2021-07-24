@@ -27,7 +27,7 @@ class DashboardController extends Controller
         if($count_testcase == 0){
             $achieving_rate = 0;
         }else{
-            $achieving_rate = $completed_testcase / $count_testcase * 100 . '%';
+            $achieving_rate = round(($completed_testcase / $count_testcase * 100 ), 0). '%';
         }
 
         // remaining date
