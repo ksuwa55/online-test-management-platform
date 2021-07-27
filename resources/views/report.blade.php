@@ -45,13 +45,9 @@
                     <td scope="col">{{ $count_succeed_testcase }}</td>
                     <td scope="col">{{ $count_failed_testcase }}</td>
                     <td scope="col">{{ $count_accepted_testcase }}</td>
-
                 </tr>
             </tbody>
         </table>
-
-        <br>
-
     </div>
 
     <!-- Bootstrap JS -->
