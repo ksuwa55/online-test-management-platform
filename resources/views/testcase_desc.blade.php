@@ -18,7 +18,7 @@
             </li>
         </ul>
 
-        {{-- <a href="{{ route('testcases.index') }}" class="btn btn-secondary mr-2"><i class="fa fa-arrow-left"></i>Back</a> --}}
+        <a href="{{ url()->previous() }}" class="btn btn-secondary mr-2"><i class="fa fa-arrow-left"></i>Back</a>
     </div>
 
 

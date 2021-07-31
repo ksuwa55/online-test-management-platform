@@ -19,7 +19,7 @@
                 value="{{ $requirement->description }}"  required autofocus>
             </div>
 
-            <a href="{{ route('requirements.index') }}" class="btn btn-secondary mr-2"><i class="fa fa-arrow-left"></i>Back</a>
+            <a href="{{ url()->previous() }}" class="btn btn-secondary mr-2"><i class="fa fa-arrow-left"></i>Back</a>
 
             <button type="submit" class="btn btn-info ">                
                 <i class="fa fa-check"></i>

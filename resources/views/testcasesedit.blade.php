@@ -37,7 +37,7 @@
                 rows="5">{{ $testcase->bug_comment }}</textarea>
             </div>
 
-            {{-- <a href="{{ route('testcases.index') }}" class="btn btn-secondary mr-2"><i class="fa fa-arrow-left"></i>Back</a> --}}
+            <a href="{{ url()->previous() }}" class="btn btn-secondary mr-2"><i class="fa fa-arrow-left"></i>Back</a>
 
             <button type="submit" class="btn btn-info ">                
                 <i class="fa fa-check"></i>

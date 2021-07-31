@@ -72,7 +72,6 @@
                 <thead>
                     <tr>
                         <th scope="col">Code</th>
-                        <th scope="col">Title</th>
                         <th scope="col">Requirements</th>
                         <th scope="col">Test data</th>
                         <th scope="col">Evidence</th>
@@ -84,7 +83,6 @@
                     @foreach ($testcases as $testcase)                        
                     <tr>
                         <td><a href="{{ route('testcases.display_descriptions', $testcase->id) }}">{{ $testcase->testcase_cd }}</a></td>
-                        <td>{{ $testcase->title }}</td>
                         <td>{{ $testcase->requirement_cd }}</td>
                         <td>
                             <a href="{{ route('testcases.downloadTestdataFile', $testcase->id) }}"  style="display: flex; flex-direction:column;  max-width:7rem; margin-top:0.5rem;" >
