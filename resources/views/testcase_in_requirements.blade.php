@@ -59,7 +59,7 @@
     <table class="table table-striped" style="margin-top:7px;">
         <thead>
             <tr>
-            <th scope="col">Code</th>
+            <th scope="col">Testcase Code</th>
             <th scope="col">Test data</th>
             <th scope="col">Evidence</th>
             <th scope="col">Status</th>

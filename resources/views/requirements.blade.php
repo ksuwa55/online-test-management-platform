@@ -53,10 +53,10 @@
         <script>alert('{{ session('flash_message') }}')</script>    
     @endif
     
-    <div class="row" style="min-height: 85vh">
+    <div class="row" style="min-height: 100vh">
 
         <!-- Requirements List -->
-        <div class="col-3 border border-dark" style="overflow-y: auto; max-height: 85vh;" >
+        <div class="col-3 border border-dark" style="overflow-y: auto; max-height: 100vh;" >
             @foreach($requirements as $requirement)
             <div class="card" style="margin:7px 0;">
                 <div class="card-header">
@@ -88,7 +88,7 @@
         {{-- <div class="col-1"></div> --}}
 
         <!-- Test Case List -->
-        <div class="col-9 border border-dark" style="overflow-y: auto; max-height: 85vh;">
+        <div class="col-9 border border-dark" style="overflow-y: auto; max-height: 100vh;">
             @include('testcase_in_requirements')
         </div>
     </div>    

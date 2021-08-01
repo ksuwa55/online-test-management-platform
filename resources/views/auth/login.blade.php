@@ -15,11 +15,11 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <!-- Email Address -->
+            <!-- Project Code -->
             <div>
                 <x-label for="project_cd" :value="__('Project Code')" />
 
-                <x-input id="project_cd" class="block mt-1 w-full"  name="project_cd" :value="old('project_cd')" required autofocus />
+                <x-input id="project_cd" class="block mb-2 w-full"  type="password" name="project_cd" :value="old('project_cd')" required autofocus />
             </div>
 
             <!-- Email Address -->
