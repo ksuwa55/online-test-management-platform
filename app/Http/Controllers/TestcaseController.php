@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Testcase;
 use App\Models\Requirement;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rule;
 
 class TestcaseController extends Controller
 {
@@ -86,8 +87,15 @@ class TestcaseController extends Controller
         if(in_array($request->requirement_cd, $requirement_cds)){
             $testcase->requirement_cd = $request->requirement_cd;
         }else{
+
             return back();
         }
+
+        $request->validate([
+            'testcase_cd' => [
+                Rule::unique('testcases')->where('project_cd', $user_project_cd),
+            ]
+        ]);
 
         // asigne to test case
         $testcase->testcase_cd = $request->testcase_cd;
@@ -261,7 +269,7 @@ class TestcaseController extends Controller
 
         $testcase->delete();
         session()->flash('flash_message', 'test case successfully deleted');
-        return redirect('testcases');
+        return back();
     }
 
     public function display_descriptions($id){

@@ -3,7 +3,9 @@
 @section('main-content')
 
 <div class="container mt-3">
-
+    @foreach ($errors->all() as $error)
+        <p style="color: red">{{$error}}</p>
+    @endforeach
     <!-- Modal (Pop up of requirements) -->
     <div class="row">
 

@@ -3,7 +3,9 @@
 @section('main-content')
 
 <div class="container mt-3">
-
+    @foreach ($errors->all() as $error)
+        <p style="color: red">{{$error}}</p>
+    @endforeach
     <!-- Modal (Pop up of testcase) -->
     <div class="row">
         @if ($user_role==='Administrator'||$user_role==='Manager'||$user_role==='Tester')

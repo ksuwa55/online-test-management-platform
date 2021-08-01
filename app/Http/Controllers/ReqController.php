@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Requirement;
 use App\Models\Testcase;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rule;
 
 class ReqController extends Controller
 {
@@ -73,14 +74,23 @@ class ReqController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $user = \Auth::user();
         $user_project_cd = $user->project_cd;
 
+        $request->validate([
+            'requirement_cd' => [
+            Rule::unique('requirements')->where('project_cd', $user_project_cd),
+        ],
+        ]);
         $requirement = new Requirement();
         $requirement->requirement_cd = $request->requirement_cd;
         $requirement->title = $request->title;
         $requirement->description = $request->description;
         $requirement->project_cd = $user_project_cd;
+
+
 
         $requirement->save();
         session()->flash('flash_message', 'requirement successfully stored');
