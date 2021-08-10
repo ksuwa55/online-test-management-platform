@@ -165,8 +165,14 @@ class ReqController extends Controller
         $requirement = Requirement::findOrFail($id);
         $requirement_cd = $requirement->requirement_cd; // requirement_cd
 
+        $testcases = Testcase::where('requirement_cd', $requirement_cd)->get();
+
         Storage::deleteDirectory('public/'.$project_cd.'/'.$requirement_cd);
 
+        foreach($testcases as $testcase){
+            $testcase->delete();
+        }
+        
         $requirement->delete();
         session()->flash('flash_message', 'requirement successfully deleted');
         return redirect('requirements');

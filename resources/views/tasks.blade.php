@@ -77,7 +77,7 @@
                         @endforeach     
                     </p>
                     <p class="card-text" > {{ $task->start }}~{{$task->end}} </p>
-                    @if ($user_role==='Administrator')
+                    @if ($user_role==='Administrator'||$user_role==='Manager')
                         <a href="{{ route('tasks.edit', $task->id)}}" class="btn btn-success btn-sm"  >
                             <i class="fa fa-edit"></i> 
                         </a>  

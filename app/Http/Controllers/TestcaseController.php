@@ -204,7 +204,7 @@ class TestcaseController extends Controller
        
         $testcase->save();
         session()->flash('flash_message', 'test case successfully updated');
-        return redirect('testcases');
+        return back();
     }
 
     public function downloadTestdataFile($id){
