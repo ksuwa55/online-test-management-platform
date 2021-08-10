@@ -177,7 +177,7 @@ class TestcaseController extends Controller
 
         // the case that status == 'accept' and role == 'tester'
         if($user_role == 'Tester' && $request->status == 'Accepted'){
-            return back();
+            return redirect('testcases');
         }
 
          //file testdata
@@ -204,7 +204,7 @@ class TestcaseController extends Controller
        
         $testcase->save();
         session()->flash('flash_message', 'test case successfully updated');
-        return back();
+        return redirect('testcases');
     }
 
     public function downloadTestdataFile($id){
