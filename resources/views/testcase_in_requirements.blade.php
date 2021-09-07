@@ -124,16 +124,7 @@
                             </div>
                         @endif
                     </td>
-                    {{-- <td>
-                        <select name="status" id="status" class="form-control" >    
-                            <option>In progress</option>
-                            <option>Completed</option>
-                        </select>
-                    </td> --}}
                 </tr>
-
-                
-
                 @endforeach
             @endif
 

@@ -87,7 +87,6 @@
             </div>
             @endforeach
         </div>
-        {{-- <div class="col-1"></div> --}}
 
         <!-- Test Case List -->
         <div class="col-9 border border-dark" style="overflow-y: auto; max-height: 100vh;">
