@@ -46,7 +46,7 @@
             <div class="card-body">
                 <br>
                 <h4 class="card-title">{{ $achieving_rate }}</h4>
-                <p class="card-text">Achievement rates</p>
+                <p class="card-text">Achievement Ratio</p>
             </div>
         </div>
         <div class="col-2"></div>
