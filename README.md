@@ -1,3 +1,20 @@
+# online testing management platform
+Test management tool for unit and system testing small systems
+  
+# Description
+The author created a test management tool as part of a university project, primarily designed to streamline online test progress management with user-friendly features. This solution addresses the problem of inefficient management methods, such as relying on Excel, which can impose unnecessary burdens on developers and testers.
+<br>
+<br>
+For additional information, please visit the following URL.
+<br>
+https://drive.google.com/file/d/1RV5QaVrgQZIdQ3Bk-46nSPFokKhjZxpM/view?usp=sharing
+
+# Technical stacks
+ Larave8
+ <br>
+ MySql
+ 
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
